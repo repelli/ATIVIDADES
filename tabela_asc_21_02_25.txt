@@ -104,4 +104,46 @@ void loop()
   
 }
 
+-------------------------------------------------------------------------------
+//no Arduino so podemos utilizar ate 32 bits.
+----------------------------------------------------------------------------------
+
+// 
+//
+unsigned int numero = 400  ; //= --> recebe
+int64_t teste = 49;  
+void setup()
+{
+  
+  Serial.begin(9600);
+  Serial.println("Tamanhos dos tipos de variaveis em bytes ");
+ 
+  
+  
+   Serial.print( "int8_t:  "); Serial.println(sizeof(int8_t));
+   Serial.print( "uint8_t:  "); Serial.println(sizeof(uint8_t));
+  
+  
+  
+   Serial.print( "int16_t:  "); Serial.println(sizeof(int16_t));
+   Serial.print( "uint16_t:  "); Serial.println(sizeof(uint16_t));
+  
+  
+   Serial.print( "int32_t:  "); Serial.println(sizeof(int32_t));
+   Serial.print( "uint32_t:  "); Serial.println(sizeof(uint32_t));
+  
+  
+   Serial.print( "int64_t:  "); Serial.println(sizeof(int64_t));
+   Serial.print( "uint64_t:  "); Serial.println(sizeof(uint64_t));
+  
+   Serial.print( sizeof(teste)); 
+ 
+  
+}
+
+void loop()
+{
+  
+}
+
 
