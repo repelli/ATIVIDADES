@@ -1,0 +1,47 @@
+GIT --> controle de versionamento, cria versões do arquivo no seu computador conseguindo voltar na versão que voce criou open source criado pelo Trovald. Cria uma linha de tempo criando um server point.
+GITHUB--> espécie de google drive, plataforma online que armazena código fonte, assemelha-se a uma rede social, onde vc pode compartilhar códigos e criar repositórios. --> Microsoft
+
+sequencia de comandos
+push --> pega o código local e sobe para o GitHub.
+pull --> pega o código no GitHub e baixa para o local.
+
+git init --> cria um novo repositório git em um diretório atual ou em um especificado.
+git add . -->, adiciona todas asl alterações do diretório de trabalho ao staging area no tit
+git commit -m "mensagem" --> cria uma mensagem de confirmação especificada para alteração adicionada.
+git log -->  exibe o histórico de commits, da mais recente ate o mais antigo.
+git status --> exibe informações como: arquivos modificados, arquivos adicionados á staging area, arquivos que forma removidos e entre outros
+git reset --hard HEAD~1 --> desfaz o ultimo commit e atualiza o estado do repositório para refletir o commit anterior.
+
+
+git remote add orign https://github.com ---> Conecta o repositório git com o repositório remoto , indicado pur uma URL.
+git push origin main --> Envia as alterações do repositório local para o repositório remoto forçando uma criação de uma branch main, caso tenha a branch, não cria
+git clone https://GitHub.com --> cria uma cópia de um repositório git remoto em seu computador
+git pull --> Atualiza o repositório local conforme as alteração feitas no repositório remoto
+git push origin main -->  Envia os commits local, para o repositório remoto, da branch main.
+git show 01011 ---> Mostra mais detalhes do commit.
+
+
+git 
+init
+add
+commit -m
+branch -M main
+redmote add orgin https^//GitHub.com
+git push -u origin main
+
+
+Remoto.
+git clone https://github.com
+add
+status commit - m "mensagem"
+push origin main
+
+
+ATENÇÃO.
+git commit
+git push
+
+
+https://git-scm.com/
+
+no cmd git --version

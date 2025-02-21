@@ -1,0 +1,40 @@
+Controlador x Processador.
+
+Controlador: possui tudo o que necessita integrado: área para dados, HD, etc, tudo integrado já o processador somente computa necessitando de outros periféricos para completar suas tarefas.
+
+ARDUÍNO
+
+C
+case sensitive.
+
+{} --> indica o inicio e fim de um bloco.
+
+técnica --> camelCase
+
+CÓDIGO ARDUÍNO.
+-------------
+
+/* Autor: Fernando Gomes Repelli.
+Nome do programa: Pisca-pisca.
+Descrição: este é o primeiro código em arduino e pisca o pino 13.
+Data:19/02/2025 */
+
+void setup()//inica o arduíno
+{
+  //comentário para iguinorar apenas uma linha.
+  /*inicializa a porta serial só roda uma vez.
+  entrada quando envia um sinal para o microcontrolador,
+  como um botão. Iguinora um texto maior que se encontra entreos
+  marcadores */
+  pinMode(13,OUTPUT); //define o  pino 13 como saída
+}
+
+void loop ()//O programa fica em loop acendendo e apagando o LED do pino 13.
+  {
+  digitalWrite(13,HIGH);//aciona o pino 13
+  delay(1000);//aguarda 1000 milesegundos.
+  
+  digitalWrite(13,LOW);//desaciona o pino 13
+  delay(1000);//aguarda 1000 milesegundos
+  
+}

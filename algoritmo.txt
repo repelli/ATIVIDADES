@@ -1,0 +1,59 @@
+Colocar o despertador para despertar 05:15
+Desligar o despertador
+Levantar da cama.
+Ir ao banheiro.
+Lavar o rosto ou tomar banho.
+Escovar os dentes.
+Trocar a roupa.
+Preparar o cafe.
+Tomar cafe.
+Lavar a louça do cafe.
+Alimentar os cachorros.
+Pegar os pertences pessoais.(bolsa, carteira, celular,ec)
+Alimentar os cachorros.
+Sair de casa.
+Fechar o portão.
+Descer a rua.
+Sinalizar ao ônibus.
+Subir ao ônibus.
+Descer na estação de trem.
+Subir no trem.
+Descer na estação São Caetano.
+Andar sentido rua Amazonas.
+Subir a rua Amazonas. 
+Virar a direita na rua Niteroi
+Chegar a portaria.
+Subir dois lances de escada.
+Chegar a sala 09.
+
+
+
+
+ALGORITMO FINAL.
+-----------------
+Colocar o despertador para tocar
+Desligar o despertador.
+Levantar da cama.
+Ir ao banheiro.
+Lavar o rosto ou tomar banho.
+Escovar os dentes.
+Trocar de roupa.
+Prepara o café.
+Tomar o café.
+Pegar as chaves.
+Pegar os pertences pessoais necessários.
+Sair de casa.
+Trancar a casa.
+Deslocar-se ao ponto de ônibus
+Sinalizar ao ônibus
+Subir no ônibus.
+Passar o bilhete na catraca.
+Descer no ponto mais próxima da estação.
+Passar o bilhete  na catraca.
+Subir no transporte sobre trilhos.
+Descer na estação São Caetano.
+Subir a rua Amazonas.
+Virar a direita na rua Niterói.
+Chegar a portaria do Senai.
+Subir dois lances de escada. 
+Chegar a sala 9 ate as 07:45

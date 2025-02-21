@@ -1,0 +1,12 @@
+Decomposição --> Dividir o problema em pedaços menores estudando e entendendo o problema.
+
+Reconhecimento de padrões --> Reconhecer padrões através de problemas semelhantes e experiências.
+
+Abstração -->  Ver o todo e reconhecer o mais importante, como a definição do cachorro. Parte-se do geral e não do detalhe.
+
+Pensamento algoritmo --> Conseguir criar um sequência de passos ou regras que chegam ao mesmo resultado para a resolução de problemas, como exemplo podemos citar receitas.
+
+
+
+
+

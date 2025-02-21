@@ -1,0 +1,212 @@
+Nomes de função ou variável.
+
+Deve ser uma palavra não contendo espaços.
+Não pode iniciar com números.
+O único caractere especial permitido é _.
+Não pode ser uma palavra reservada.
+
+
+
+
+
+
+/* Autor: Fernando Gomes Repelli.
+Nome do programa:Semáforo.
+Descrição:Semáforo construído no arduino
+Data:19/02/2025 */
+
+//#define diretiva de texto
+
+#define pinLEDV 8
+#define pinLEDA 12
+#define pinLEDVER 13
+#define tempoPiscaV 5000
+#define tempoPiscaA 2000
+#define tempoPiscaVER 3000
+
+
+
+void setup()//inica o arduíno
+{
+  //comentário para iguinorar apenas uma linha.
+  /*inicializa a porta serial só roda uma vez.
+  entrada quando envia um sinal para o microcontrolador,
+  como um botão. Iguinora um texto maior que se encontra entreos
+  marcadores */
+  pinMode(pinLEDV,OUTPUT); //define o  pino 13 como saída
+  pinMode(pinLEDA,OUTPUT);
+  pinMode(pinLEDVER,OUTPUT);
+}
+
+void loop ()//O programa fica em loop acendendo e apagando o LED do pino 13.
+  {
+  
+   //verde
+  digitalWrite(pinLEDV,HIGH);//aciona o pino 8 / o HIGH pode ser substituido por 1
+  delay(tempoPiscaV);//aguarda 3000 milesegundos.
+  
+  digitalWrite(pinLEDV,LOW);//desaciona o pino 13 // o LOW pode ser substituido por 0
+  delay(tempoPiscaV);//aguarda 3000 milesegundos
+}
+ 
+  //amarelo
+   digitalWrite(pinLEDA,HIGH);//aciona o pino 12 / o HIGH pode ser substituido por 1
+  delay(tempoPiscaA);//aguarda 2000 milesegundos.
+  
+  digitalWrite(pinLEDA,LOW);//desaciona o pino 12 // o LOW pode ser substituido por 0
+  delay(tempoPisca);//aguarda 2000 milesegundos
+
+ //vermelho
+  digitalWrite(pinLEDVER,HIGH);//aciona o pino 13 / o HIGH pode ser substituido por 1
+  delay(tempoPiscaVER);//aguarda 5000 milesegundos.
+  
+  digitalWrite(pinLEDVER,LOW);//desaciona o pino 13 // o LOW pode ser substituido por 0
+  delay(tempoPiscaVER);//aguarda 5000 milesegundos
+ 
+
+
+
+https://www.tinkercad.com/things/83Tg4m3G1Hf/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits
+
+
+
+
+
+
+
+Semáforo em cruzamento.
+_________________________
+
+
+/* Autor: Fernando Gomes Repelli.
+Programa: Cruzamento.
+Descrição: Semáforo do cruzamento.
+Data:20/02/2025.*/
+  
+
+#define pinLED1 13
+#define pinLED2 12
+#define pinLED3 8
+#define pinLED4 7
+#define pinLED5 4
+#define pinLED6 2
+#define tPisca1 5000
+#define tPisca2 2000
+#define tPisca3 3000
+
+
+  void setup()
+{
+  pinMode(pinLED1, OUTPUT);
+  pinMode(pinLED2, OUTPUT);  
+  pinMode(pinLED3, OUTPUT);
+  pinMode(pinLED4, OUTPUT);
+  pinMode(pinLED5, OUTPUT);
+  pinMode(pinLED6, OUTPUT);
+}
+
+void loop()
+{
+  //vermelho 0 - verde 1
+  digitalWrite(pinLED1, HIGH);
+  digitalWrite(pinLED6, HIGH);
+  delay(tPisca1);
+  
+  digitalWrite(pinLED1, LOW);
+  digitalWrite(pinLED6, LOW);
+ 
+ 
+  
+  //amarelo 1 
+  
+  digitalWrite(pinLED5, HIGH);
+  delay(tPisca2);
+  digitalWrite(pinLED5, LOW);
+ 
+  
+  
+ //verde 0 -  vermelho 1
+  
+  
+   
+  digitalWrite(pinLED3, HIGH);
+  digitalWrite(pinLED4, HIGH);
+  delay(tPisca3); 
+  digitalWrite(pinLED3, LOW);
+  digitalWrite(pinLED4, LOW);
+  
+  //amarelo 0
+  
+  digitalWrite(pinLED2, HIGH);
+  delay(tPisca2);
+  digitalWrite(pinLED2, LOW);
+ 
+  
+  
+ 
+}
+
+
+
+
+Apagar luz amarela S2  
+Ligar a luz verde de S1
+Ligar a luz vermelha S2
+Ficar acesa 3s
+
+Apagar luz verde S1
+Ligar luz amarela S1
+Ligar luz vermelha S2
+Ficar acessa 2s
+
+Apagar luz amarela S1
+Ligar luz vermelha S1
+Apagar luz vermelha S2
+Ligar luz verde S2
+Ficar acesa 3s
+
+Apagar luz verde S2
+Ligar luz amarela S2
+Ligar luz vermelha S1
+Ficar acesa 2s
+
+
+
+
+
+digitalWrite(pinLedVerde, HIGHT); 
+digitalWrite(pinLedVermelho2, HIGHT); 
+digitalWrite(pilLedVermelho1, LOW); 
+digitalWrite(pilLedAmarelo2, LOW); 
+
+
+delay(tempo3s);
+
+digitalWrite(pilLedVerde, LOW); 
+digitalWrite(pilLedAmarelo, HIGHT); 
+
+delay(tempo2s);
+
+digitalWrite(pilLedVermelho2, LOW);
+digitalWrite(pilLedVerde2, HIGHT); 
+digitalWrite(pilLedAmarelo1, LOW);
+digitalWrite(pilLedVermelho1, HIGHT); 
+
+delay(tempo3s);
+
+digitalWrite(pilLedVerde1, LOW); 
+digitalWrite(pilLedAmarelo2, HIGHT); 
+digitalWrite(pilLedVerde, LOW); 
+digitalWrite(pilLedVermelho1, HIGHT); 
+delay(tempo2s);
+
+
+
+ 
+
+ 
+
+
+
+
+
