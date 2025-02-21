@@ -45,3 +45,63 @@ void loop()
 
 
 ver overflow de boleto
+
+erro 2y38
+
+o máximo do Arduino e 32 bits ou 4 Bytes.
+
+
+
+
+TESTANDO VARIAVEIS.
+--------------------
+// 
+//
+unsigned int numero = 400  ; //= --> recebe
+char teste = 49;  
+void setup()
+{
+  //inicia o serial com a velocidade de comunicação 9600
+  //Serial.begin(9600); 
+ // Serial.println("Ola mundo \n \r"); // pula a linha ou com \n ao contrário
+ // Serial.print("Senai \n");
+  //Serial.print("A variavel contem: ");
+  //Serial.println(numero);
+  //Serial.print("A variavel contem agora: ");
+  //numero = 32769;
+  //Serial.println(numero);
+  Serial.begin(9600);
+  Serial.println("Tamanhos dos tipos de variaveis em bytes ");
+ // Serial.print(sizeof(numero));
+ //so aceita 0 e 1
+  Serial.print( "Bool:  "); Serial.println(sizeof(bool));
+ //aceita letras da tabela ASC, nao ha negativo de 0 a 255 caracter
+  Serial.print( "Char:  "); Serial.println(sizeof(char));
+  //Escreve ate  ou 0 255
+  Serial.print( "Byte:  "); Serial.println(sizeof(byte));
+ //e sinalizado implicito de -32.768 a 32.767
+    Serial.print( "Int:  "); Serial.println(sizeof(int));
+  // a sinalizacao e explicita de 0 a 65.535
+  Serial.print( "Unsiged int:  "); Serial.println(sizeof(unsigned int));
+  // vai de -2.147.483.648 a 2.147.438.647
+  Serial.print( "Long:  "); Serial.println(sizeof(long));
+  //vai de 0 4.294.967.295
+  Serial.print( "Unsigned long:  "); Serial.println(sizeof(unsigned long));
+  //+1.175494 * 10^-38
+  //- 1.175494 * 10^-38 
+  //+3,4028235*10^+38 
+  //-3,4028235*10^+38 aceitando virgulas
+  Serial.print( "Float:  "); Serial.println(sizeof(float));
+  // vai de -2.147.483.648 a 2.147.438.647
+  Serial.print( "Double:  "); Serial.println(sizeof(double));
+  
+  Serial.println(teste);
+  
+}
+
+void loop()
+{
+  
+}
+
+
