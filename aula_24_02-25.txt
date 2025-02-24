@@ -1,0 +1,187 @@
+//*Nome do arquivo: Matemática.
+Autor: Fernando Gomes Repelli.
+Data: 24/02/2025.
+Descrição: Este código ira demonstrar as operações matemáticas básicas.
+*/
+
+//******DECLARACAO DE VARIAVEIS GLOBAIS *************
+
+int numeroA = 10;
+int numeroB = 5 ;
+int resultado = 0 ;
+float resultadoReal=0;
+
+
+void setup()
+{
+  
+  Serial.begin(9600); //comunicao assincrona
+  //Serial.print(sizeof(int));
+  
+  //****ADIÇÃO*****
+  
+  resultado = numeroA + numeroB; //= --> recebe
+  Serial.print("A SOMA do numero A como o numero B e: ");
+  Serial.println(resultado);
+ 
+ //****SUBTRAÇÃO*****
+  
+  resultado = numeroB - numeroA; 
+  Serial.print("A SUBTRACAO do numero B como o numero A e: ");
+  Serial.println(resultado);
+  
+  //****MULTIPLICAÇÃO*****
+  
+  resultado = numeroA * numeroB;
+  Serial.print("A MULTIPLICACAO do numero A como o numero B e: ");
+  Serial.println(resultadoReal);
+  
+  //****DIVISAO INTEIRA *****
+  
+  resultado = numeroA / numeroB;
+  Serial.print("A DIVISAO do numero A como o numero B e: ");
+  Serial.println(resultado);
+  
+  //****RESTO DA DIVISAO *****
+  
+  resultado = numeroA % numeroB; 
+  Serial.print("O RESTO DA DIVISAO do numero A como o numero B e: ");
+  Serial.println(resultado);
+  
+  
+  //****DIVISAO REAL *****
+  
+  resultadoReal = (float)numeroA / (float)numeroB; //mudança de tipo para o calculo
+  Serial.print("A DIVISAO REAL do numero A como o numero B e: ");
+  Serial.println(resultadoReal, 1); //limita a impressão do resultado em uma casa decimal
+  
+  
+  
+    
+  //****POTENCIACAO *****
+  
+  resultado = pow(numeroA,numeroB); //a elevado a b
+  Serial.print("A POTENCIA do numero A elevado ao numero B e: ");
+  Serial.println(resultado); 
+  
+  
+   //****POTENCIACAO - QUADRADO *****
+  
+  resultado = sq(numeroA); //a elevado ao quadrado
+  Serial.print("A POTENCIA do numero A elevado ao quadrado e: ");
+  Serial.println(resultado); 
+  
+  
+    //****RAIZ QUADRADA *****
+  
+  resultadoReal = sqrt((float)numeroA); //raiz quadrada
+  Serial.print("A RAIZ QUADRADA do numero A  e: ");
+  Serial.println(resultadoReal); 
+  
+  
+  
+   //****ABSOLUTO - MÓDULO *****
+  
+  resultado = abs(numeroA * -1); 
+  Serial.print("O MODULO  do numero A multiplicado por -1 e: ");
+  Serial.println(resultado); 
+  
+  
+   
+   //****RESTRICAO *****
+  
+  resultado = constrain(numeroA ,-3,5); //restringe a variavel entre os limites -3 e 5
+  Serial.print("A RESTRICAO do numero A e: ");
+  Serial.println(resultado); 
+  
+  
+   
+   //****REMAPEAMENTO *****
+  
+  resultado = map(numeroA, 0 , 20, 0 , 10); //map pega um valor para remapear 
+  //map(valor, deMenor,deMaior, paraMenor, paraMaior
+  Serial.print("O REMAPEAMENTO do numero A e: ");
+  Serial.println(resultado); 
+  
+  
+  //*****OPERADORES DE ATRIBUIÇÃO *****
+  
+ // numeroA = numeroA +5;
+  
+  Serial.print("Numero A  + 5: ");
+  Serial.println(numeroA +=5);
+  
+  //numeroA = numeroA -5;
+  Serial.print("Numero A  - 5: ");
+  Serial.println(numeroA -=5);
+ 
+  
+  //numeroA = numeroA * 5;
+  Serial.print("Numero A * 5: ");
+  Serial.println(numeroA *=5);
+  
+  
+   //numeroA = numeroA /5
+  Serial.print("Numero A / 5: ");
+  Serial.println(numeroA /=5);
+  
+  //*****INCREMENTAR *****
+  
+  //numeroA = numeroA +1; 
+  Serial.print("Numero A pos incremento: ");
+  Serial.println(numeroA++); //pós incremento
+  Serial.println(numeroA);
+  Serial.print("Numero A pre incremento: ");
+  Serial.println(++numeroA);// pré incremento
+  Serial.println(numeroA);
+  
+    //*****DECREMENTO *****
+  
+  //numeroA = numeroA -1;
+  Serial.print("Numero A pos decremento: ");
+  Serial.println(numeroA--);//pós incremento
+  Serial.println(numeroA);
+  Serial.print("Numero A pre incremento: ");
+  Serial.println(--numeroA);// pré incremento
+  Serial.println(numeroA);
+  
+  
+  
+  
+  
+}
+
+void loop()
+{
+  
+  
+  
+}
+
+
+
+
+
+EXERCICIO
+
+map (700,0,1000,0,10)
+
+resultado =  entrada *(paraMaior)/deMaior
+
+//RESPOSTA
+
+float valor = 0 ;
+float deMenor = -10;
+float deMaior =10 ;
+float paraMenor = 0;
+float paraMaior = 500;
+
+resultado = ((valor/100) * paraMaior);
+Serial.println(resultado);
+
+  
+
+
+paraMaior - paraMenor
+------------------------ = r
+deMaior - deMenor
