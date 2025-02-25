@@ -1,0 +1,119 @@
+// Nome: Fernando Gomes Repelli.
+// Estruturas de comparação e decisão.
+//Data: 25/02/2025.
+
+
+/* 
+	***** OPERADORES DE COMPARAÇÃO ******
+== --> para comparação usamos dois iguais.
+!= --> inversão de igual, verifica se dois valores são diferentes.
+> --> comparador de maior.
+< --> comparador de menor.
+>= --> comparador maior igual.
+<= --> comparador de menor igual.
+
+   ***** OPERADORES DE DECISÃO *****
+   
+  if(condição)  
+{
+	A resposta deve ser verdadeira para a execução.
+}
+
+  if(condição)
+  {
+  condição verdadeira
+  }
+  else
+  {
+  condição falsa
+  
+  }
+
+
+
+
+*/
+
+int temperatura = 3;
+
+void setup()
+{
+ 
+  Serial.begin(9600);
+  
+  if(temperatura >= 30)
+  {
+    Serial.println("2 sois para cada um"); 
+   }
+   else if(temperatura < 30 && temperatura > 24 )	
+  {
+   Serial.println("Partiu praia !!!"); 
+   }
+  else if(temperatura <= 24  & temperatura > 18   )	//&& --> faz comparação bit a bit
+  {
+   Serial.println("Ta gostosinho"); 
+   }
+  else if (temperatura <= 18  & temperatura > 6   )
+  {
+   Serial.println("Pega cobertinha"); 
+   }
+  else
+    Serial.println("Frio pra caramba");
+  
+  
+  
+ 
+  
+}
+
+void loop()
+{
+ 
+  
+  
+  
+}
+
+
+
+
+EXERCICIO 1 - CALCULO DE IMC.
+
+
+
+// Programa calculo de IMC.
+//Nome: Fernando Gomes Repelli.
+//Data: 25/02/2025.
+//Calcula se voce esta ou nao com sobrepeso.
+
+
+double  peso =20.0 ;
+double  altura = 1.87 ;
+double  imc = 0.0;
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  imc = peso/pow(altura,2);
+ 
+  if (imc >= 25.0)
+    { 
+      Serial.println("Voce esta com sobrepeso.");
+  }
+  else if( imc < 25 & imc >= 18.5)
+  {
+     Serial.println("Voce esta com peso normal.");
+      }
+  else 
+    {
+     Serial.println("Voce esta abaixo do peso");
+  }
+}
+
+void loop()
+{
+ 
+}
+  
+ 
