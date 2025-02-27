@@ -1,0 +1,29 @@
+CORREÇÃO DO EXERCÍCIO 3.
+
+/*
+ Programa: Faixa de valores.
+Nome: Fernando Gomes Repelli.
+Data: 26/02/2025.
+Descrição:O programa acende um alerta quando o valor estiver fora da faixa e converte os valores inseridos para a faixa.
+*/
+
+
+#define LED7 7
+int valor  = 1000;
+
+void setup() {
+  pinMode(led7,OUTPUT);
+  Serial.begin(9600);
+
+   
+}
+
+void loop() {
+
+ int valorMap = map(valor,0,1023,0,100); //de - para
+  Serial.print(valorMap);
+  
+  int valorConstrain = contrain(ValorMap,20,80 ); //traz para dentro dos limites
+  Serial.print(valorConstrain);
+ 
+}

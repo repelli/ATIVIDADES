@@ -1,0 +1,233 @@
+
+
+EXERCÍCIOS 27/02/2025
+----------------------
+
+Exercício 1.
+----------------
+Faça um programa que avalie um número interio e informe se este número é positivo ou negativo.
+
+/*
+ Programa: Valores positivo e negativo.
+Nome: Fernando Gomes Repelli.
+Data: 27/02/2025.
+Descrição:O programa verifica se um número é o positivo ou negativo.
+*/
+
+
+
+#define LED12 12
+int numero =0 ;
+
+
+void setup() {
+  pinMode(LED12,OUTPUT);
+  Serial.begin(9600);
+
+
+
+if(numero >=0)
+ {
+digitalWrite(LED12,HIGH);
+Serial.println("Numero positivo");
+}
+else
+ {
+digitalWrite(LED12,LOW);
+Serial.println("Numero negativo");
+}
+}
+
+void loop() {
+
+
+}
+
+Exercício 2.
+------------
+Faça um programa com as seguintes informações: nome, cargo e salario de um funcionário. Se o funcionário ganhar abaixo de 1000 reais, calcule o salário acrescido de 10%. Ao final exiba o nome, o cargo e o salário reajustado deste funcionário.
+
+/*
+ Programa: Aumento de salario
+Nome: Fernando Gomes Repelli.
+Data: 27/02/2025.
+Descrição:O programa verifica se o funcionario ganha menos de 1000 reais
+concede aumento e imprime o nome, o cargo e o aumento
+*/
+
+
+
+#define LED12 12
+String nome = "Jose" ;
+String cargo = "analista" ;
+float salario = 100;
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED12,OUTPUT);
+
+  if(salario < 1000)
+   {
+    salario = salario + 0.1*salario;
+
+	}
+ // digital.Write(LED12,HIGH);
+  Serial.print("Nome: ");
+  Serial.println(nome);
+  Serial.print("Cargo: ");
+  Serial.println(cargo);
+  Serial.print("Salario: R$ ");
+  Serial.println(salario);
+}
+
+void loop() {
+
+
+}
+
+Exercício 3.
+---------------
+Uma empresa decide dar aumento de 30% aos funcionários cujo salario é inferior a 500 reais. Escreva um programa que avalie o salario de um funcionário e imprima o valor do salário reajustado ou uma mensagem caso o funcionário não tenha direito a aumento.
+
+
+/*
+ Programa: Aumento de salario
+Nome: Fernando Gomes Repelli.
+Data: 27/02/2025.
+Descrição:O programa verifica se o funcionario ganha menos de 500 reais
+concede aumento e imprime o nome, o cargo e o aumento de 30%
+*/
+
+
+#define LED12 12
+
+float salario =0 ;
+
+
+void setup() {
+  pinMode(LED12,OUTPUT);
+  Serial.begin(9600);
+ 
+if(salario < 500)
+{
+ salario = salario + 0.3*salario;
+ Serial.print(" O novo salario e: ");
+ Serial.println(salario)
+}
+else
+{
+ Serial.println("O funcionário não tem direito ao beneficio');
+ 
+}
+ 
+}
+
+void loop() {
+
+
+}
+
+
+Exercício 4.
+---------------
+
+Faça um programa que avalie dois valores e imprima qual é o maior numero.
+
+
+/*
+ Programa: Maior ou menor.
+Nome: Fernando Gomes Repelli.
+Data: 27/02/2025.
+Descrição:O programa verifica o número maior entre dois números.
+*/
+
+
+
+#define LED12 12
+
+int numero1 =0 ;
+int numero2 = 0;
+
+void setup() {
+  pinMode(LED12,OUTPUT);
+  Serial.begin(9600);
+ 
+if(numero1 > numero2)
+{
+ Serial.println("O primeiro numero e maior que o segundo");
+}
+else
+{
+ Serial.println("O segundo numero e maior que o primeiro");
+ 
+}
+ 
+}
+
+void loop() {
+
+
+}
+
+
+Exercicio 5.
+-------------
+
+
+Faça um programa que avalie 4 notas de um aluno, calcule e immprima a media aritmetica das notas e a mensagem de de APROVADO para media superio ou igual a 7, RECUPERAÇÃO 
+para notas entre 5 e 7 , ou a mensagem de REPROVADO para média inferior a 5.
+
+
+/*
+ Programa: Aumento de salario
+Nome: Fernando Gomes Repelli.
+Data: 27/02/2025.
+Descrição:O programa lê quatro notas calcula a média e verifica
+se o aluno foi aprovado, reprovado ou esta de recuperação.
+*/
+
+
+#define LED12 12
+
+float nota1 = 0 ;
+float nota2 = 0 ;
+float nota3 = 0 ;
+float nota4 = 0 ;
+float media = 0 ;
+
+
+void setup() {
+  pinMode(LED12,OUTPUT);
+  Serial.begin(9600);
+ 
+ media = (nota1+nota2+nota3+nota4)/4;
+
+ if(media >= 7){
+   Serial.print("Aluno APROVADO com media: ");
+   Serial.println(media);
+ else if (if media > 5 || media < 7)
+      {
+  Serial.print("Aluno em RECUPERACAO com media: ");
+  Serial.println(media);
+ }
+else
+{
+  Serial.print("Aluno REPROVADO com media: ");
+  Serial.println(media);
+
+}
+
+ 
+}
+
+void loop() {
+
+
+}
+
+
+
+
+
+
