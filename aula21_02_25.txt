@@ -2,3 +2,13 @@ bit --> 0, 1
 2^n = 2 ^8 --> 256
 Byte = 8 bits 0000 0000
 	      1111 1111	
+1kB --> um kilobite --> 1024 bytes
+1mB --> um megabyte --> 1024 kbyte
+1Gb --> um gigabyte --> 1024 Mbyte
+1 TB --> um terabyte --> 1024 gigByte
+1PB --> um pentabyte --> 1024 Terabyte
+
+
+velocidade tem unidade = bit.
+
+memória em Gigabyte.
