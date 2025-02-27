@@ -1,0 +1,151 @@
+EXERCICIO 1.
+-----------------
+/* Programa: Sensor de temperatura.
+Nome: Fernando Gomes Repelli.
+Data: 26/02/2025.
+Descrição:O programa acende um alerta quando a temperatura for superior a 30 .
+*/
+
+
+
+#define LED13 13
+float temperatura = 32;
+
+void setup() {
+  pinMode(LED13, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (temperatura > 30) {
+    digitalWrite(LED13, HIGH);
+    Serial.println("Atencao !!!");
+  } else {
+    digitalWrite(LED13, LOW);
+  }
+
+ 
+}
+
+
+
+EXERCICIO 2.
+-------------
+
+/*
+ Programa: Nivel de bateria.
+Nome: Fernando Gomes Repelli.
+Data: 26/02/2025.
+Descrição:O programa acende um alerta quando a bateria estiver entre 20% e 80% .
+*/
+
+
+#define LED12 12
+float bateria = 22; 
+
+void setup() {
+  pinMode(LED12, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (bateria >= 20 && bateria <= 80) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Bateria em bom estado !!!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Bateria fora da faixa segura.");
+  }
+
+ 
+}
+
+
+
+EXERCICIO 3.
+---------------
+/*
+ Programa: Faixa de valores.
+Nome: Fernando Gomes Repelli.
+Data: 26/02/2025.
+Descrição:O programa acende um alerta quando o valor estiver fora da faixa e converte os valores inseridos para a faixa.
+*/
+
+
+#define LED7 7
+float valor = 512.0; 
+float novoValor = 0.0;
+float ultimoValor = -1; 
+
+void setup() {
+  pinMode(LED7, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (valor > 0 && valor < 1023) {
+    novoValor = 20 + (valor / 17.5);
+  } else if (valor <= 0) {
+    novoValor = 20;
+    digitalWrite(LED7, HIGH);
+  } else {
+    novoValor = 80;
+    digitalWrite(LED7, HIGH);
+  }
+
+  
+  if (novoValor != ultimoValor) {
+    Serial.print("Valor convertido para: ");
+    Serial.println(novoValor);
+    ultimoValor = novoValor;
+  }
+
+  
+  if (valor <= 0 || valor >= 1023) {
+    delay(500);
+    digitalWrite(LED7, LOW);
+  }
+
+  
+}
+
+
+
+
+EXERCICIO 4.
+--------------
+
+
+/*
+ Programa: Numero par.
+Nome: Fernando Gomes Repelli.
+Data: 26/02/2025.
+Descrição: O programa acende o LED se o numero for par.
+
+*/
+
+
+
+#define LED8 8
+
+int numero = 2; 
+int resto = 0;
+
+void setup() {
+  pinMode(LED8, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  resto = numero % 2;
+
+  if (resto == 0) {
+    digitalWrite(LED8, HIGH);
+    Serial.println("O numero e par !!!");
+  } else {
+    digitalWrite(LED8, LOW);
+    Serial.println("O numero e impar !!!");
+  }
+
+ 
+}
