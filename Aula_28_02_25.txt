@@ -1,0 +1,136 @@
+
+
+/*
+
+Para verificacao de igualdade.
+
+switch(variavelavaliada){
+
+casae x:
+  
+  break;
+
+
+}
+*/
+int diaDaSemana = 9;
+
+void setup() {
+
+Serial.begin(9600);
+
+
+switch(diaDaSemana)
+{
+case 1:   
+        Serial.println("Domingo");//faça alguma coisa
+  break;
+  
+case 2: 
+        Serial.println("Segunda-feira");
+  break;
+  
+case 3: 
+        Serial.println("Terca-feira");
+  break;
+  
+case 4: 
+       Serial.println("Quarta-feira");
+  break;
+  
+case 5: 
+      Serial.println("Quinta-feira");
+  break;
+  
+case 6: 
+      Serial.println("Sexta-feira");
+  break;
+  
+case 7: 
+      Serial.println("Sabado");
+  break;
+  
+default:
+  Serial.println("Opcao invalida");
+  break;
+
+}
+
+
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
+
+
+EXERCICIO DE AULA.
+-------------------
+/*
+Programa: Switch para acender Leds.
+Nome: Fernando Gomes Repelli.
+Data: 28/02/205.
+Descrição: O programa acende os Leds de acordo com a opção da variavel número.
+*/
+
+
+#define LED1 13
+#define LED2 12
+#define LED3 8
+#define LED4 7
+#define LED5 4
+
+
+int numero = 6;
+
+void setup() {
+
+Serial.begin(9600);
+
+
+switch(numero)
+{
+  case 1:
+  
+    
+        Serial.println("Acendendo Led Vermelho");//faça alguma coisa
+        digitalWrite(LED1,HIGH);
+      	break;
+  
+case 2: 
+   
+        Serial.println("Acendendo Led Azul");
+        digitalWrite(LED2,HIGH);
+        break;
+  
+case 3: 
+        Serial.println("Acendendo Led Laranja");
+        digitalWrite(LED3,HIGH);
+        break;
+  
+case 4: 
+      Serial.println("Acendendo Led Amarelo");
+      digitalWrite(LED4,HIGH);
+      break;
+case 5: 
+      Serial.println("Acendendo Led Verde");
+      digitalWrite(LED5,HIGH);
+      break;
+default:
+  Serial.println("Opcao invalida. Nao ha LED para acender");
+  break;
+
+}
+
+
+}
+
+
+void loop()
+{
+}
