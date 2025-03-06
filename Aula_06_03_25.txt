@@ -1,0 +1,164 @@
+// Nome: Fernando Gomes Repelli.
+//Data: 06/03/2025.
+//Descrição: Revisão de estrutura de decisão.
+
+#define pinLedVermelho 13 //diretiva do compilador --> substitui o código antes de compilar
+#define pinLedVerde 10
+
+  unsigned long tempoms;
+  unsigned long tempous;
+  
+void setup()
+{
+  pinMode(pinLedVermelho, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  Serial.begin(9600);
+  
+
+  
+/*  bool condicao = false;
+ 
+  //verifica se executa o próximo comando ou pula
+  if(condicao)
+  {
+    digitalWrite(pinLedVerde, HIGH);//liga o led verde e depois vermelho
+    digitalWrite(pinLedVermelho, HIGH);
+  };
+  
+  //se houver mais de uma instrução devemos usar as chaves que cria um bloco.
+  */
+  
+ 
+  
+  
+  
+  
+}
+
+  
+void loop()
+{
+  
+  
+ // tempous = micros();
+  tempoms = millis(); //funcao que converte o tempo em milisegundos
+   Serial.println("Tempo em microsegundos: ");
+   Serial.println(tempoms);
+   
+  /*Serial.println("Tempo em segundos: ");
+   Serial.println(tempo/1000);
+  
+  */
+}
+
+
+//sintaxe--> escrita formal de uma linguagem.
+
+
+
+conversão de tempo
+
+/*Serial.println("Tempo em segundos: ");
+   Serial.println(tempo/1000);
+   Serial.println("Tempo em minutos: ");    
+   Serial.println(tempo/60);
+   Serial.println("Tempo em horas: ");
+   Serial.println(tempo/60);
+   Serial.println(tempo/60);
+  */
+
+
+
+  
+/*  bool condicao = false;
+ 
+  //verifica se executa o próximo comando ou pula
+  if(condicao)
+  {
+    digitalWrite(pinLedVerde, HIGH);//liga o led verde e depois vermelho
+    digitalWrite(pinLedVermelho, HIGH);
+  };
+  
+  //se houver mais de uma instrução devemos usar as chaves que cria um bloco.
+  */
+
+
+---------------------------------------
+Exercício dia 06/03/2025 - TENTATIVA 1.|
+---------------------------------------
+
+// Nome: Fernando Gomes Repelli.
+//Data: 06/03/2025.
+//Descrição: ACENDE E APAGA O LED.
+
+#define pinLedVermelho 13 
+#define pinLedVerde 10
+
+  unsigned long tempo ;
+  unsigned long tempo1  ;
+ 
+  
+void setup()
+{
+  pinMode(pinLedVermelho, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  Serial.begin(9600);
+  
+    
+}
+
+  
+void loop()
+{
+   
+   tempo = millis(); 
+   tempo1 = sizeof(unsigned long);
+  
+  if (tempo  <= tempo1 ){
+   digitalWrite(pinLedVerde, HIGH);
+   digitalWrite(pinLedVermelho, HIGH);
+  tempo1= tempo1 - 0.001;
+  }
+}
+
+-------------------------------------
+EXERCÍCIO DIA 06/03/2025 - RESOLUÇÃO.|
+-------------------------------------
+
+// Nome: Fernando Gomes Repelli.
+//Data: 06/03/2025.
+//Descrição: RESOLUÇÃO APAGA E ACENDE O LED.
+
+#define pinLedVermelho 13 
+#define pinLedVerde 10
+
+  unsigned long tempo ;
+  unsigned long tempo1  ;
+ 
+  
+void setup()
+{
+  pinMode(pinLedVermelho, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  Serial.begin(9600);
+  
+    
+}
+
+  
+void loop()
+{
+   
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
