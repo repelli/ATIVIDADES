@@ -1,0 +1,178 @@
+--------------
+RESOLUÇÃO 1.  
+--------------
+#define pinLedVerde 11
+#define pinLedAmarelo 12
+#define pinLedVermelho 13
+
+const int tempoVerde = 3000;
+const int tempoAmarelo = 2000 ;
+const int tempoVermelho = 5000;
+
+//define condição if(1>2); --> cuidado
+
+//#define tempoPiscaVerde 3000   
+//#define tempoPiscaAmarelo 2000
+//#define tempoPiscaVermelho 5000
+
+
+unsigned long tempoAtual = millis();
+unsigned long tempoInicial = 0; 
+
+char faseSemaforo = 0 ;
+
+void setup()
+{
+
+pinMode(pinLedVerde,OUTPUT);
+pinMode(pinLedAmarelo,OUTPUT);
+pinMode(pinLedVermelho,OUTPUT);
+Serial.begin(9600);
+
+}
+
+void loop()
+{
+
+if( faseSemaforo ==0)
+{
+       	digitalWrite(pinLedAmarelo,LOW);
+//	digitalWrite(pinLedVerde,LOW); --> NÃO NECESSÁRIO
+	digitalWrite(pinLedVermelho,HIGH);
+
+       if( tempoAtual - tempoInicial >= tempoVermelho)
+	{	
+        faseSemaforo = 1;
+        tempoIncial = tempoAtual;
+	}
+}
+
+
+if( faseSemaforo ==1)
+{
+
+digitalWrite(pinLedVermelho,LOW);
+digitalWrite(pinLedVemelho,LOW);
+digitalWrite(pinLedVerde,HIGHT);
+if( tempoAtual - tempoInicial >= tempoVerde)
+	{	
+        faseSemaforo = 2;
+        tempoIncial = tempoAtual;
+	}
+
+
+}
+
+
+if( faseSemaforo ==2)
+{
+
+digitalWrite(pinLedVermelho,LOW);
+digitalWrite(pinLedAmarelo,HIGH);
+digitalWrite(pinLedVerde,LOW);
+
+if( tempoAtual - tempoInicial >= tempoAmarelo)
+	{	
+        faseSemaforo = 0;
+        tempoIncial = tempoAtual;
+	}
+
+
+}
+
+------------
+RESOLUÇÃO 2.
+------------
+
+// Nome: Fernando Gomes Repelli.
+//Data: 06/03/2025.
+//Descrição: SEMAFORO.
+
+
+#define pinLedVerde 11
+#define pinLedAmarelo 12
+#define pinLedVermelho 13
+
+const int tempoVerde = 3000;
+const int tempoAmarelo = 2000 ;
+const int tempoVermelho = 5000;
+
+//define condição if(1>2); --> cuidado
+
+//#define tempoPiscaVerde 3000   
+//#define tempoPiscaAmarelo 2000
+//#define tempoPiscaVermelho 5000
+
+
+unsigned long tempoAtual = millis();
+unsigned long tempoInicial = 0; 
+
+char faseSemaforo = 0 ;
+
+void setup()
+{
+
+pinMode(pinLedVerde,OUTPUT);
+pinMode(pinLedAmarelo,OUTPUT);
+pinMode(pinLedVermelho,OUTPUT);
+Serial.begin(9600);
+
+}
+
+void loop()
+{
+
+if(tempoAtual - tempoInicial >= 1000) {
+ faseSemaforo++; 
+if(faseSemaforo  ==10)
+  faseSemaforo =0;
+ tempoInicial = tempoAtual;
+
+
+//switch
+
+
+
+switch(faseSemaforo){
+case 0:
+ digitalWrite(pinLedAmarelo,LOW);
+ digitalWrite(pinLedVermelho,HIGH);
+  
+
+break;
+case 5:
+ digitalWrite(pinLedVermelho,LOW);
+ digitalWrite(pinLedVerde,HIGH);
+
+
+break;
+case 8:
+ digitalWrite(pinLedVerde,LOW);
+ digitalWrite(pinLedAmarelo,HIGH);
+
+
+break;
+
+
+
+}
+
+}}
+
+
+inicio do programa
+declarar uma variável para o registro de tempo
+vai para o setup()
+definir o pino de led como saída
+vai para o loop()
+Iniciar um variável com o valor atual do tempo (tempoAtual)
+Passou 1 segundo (tempoAtual - tempoInicial)
+Alterno o estado do led.
+Senão não alterno o estado do led
+Registrar novo inicio de contagem de tempo  (TempoInicial =tempoAtual)
+Volta para o inicio do loop
+
+
+
+
+
