@@ -114,10 +114,10 @@ void loop()
    tempo = millis(); 
    tempo1 = sizeof(unsigned long);
   
-  if (tempo  <= tempo1 ){
+  if (tempo1  <= tempo ){
    digitalWrite(pinLedVerde, HIGH);
    digitalWrite(pinLedVermelho, HIGH);
-  tempo1= tempo1 - 0.001;
+  tempo= tempo + 0.001;
   }
 }
 
@@ -131,9 +131,11 @@ EXERCÍCIO DIA 06/03/2025 - RESOLUÇÃO.|
 
 #define pinLedVermelho 13 
 #define pinLedVerde 10
+#define tempoPisca 1000
 
-  unsigned long tempo ;
-  unsigned long tempo1  ;
+  unsigned long tempoms ;
+  unsigned long tempoInicial = 0;
+  bool estadoLed = 0; 
  
   
 void setup()
@@ -148,15 +150,98 @@ void setup()
   
 void loop()
 {
+   tempoms = millis();
+ 
+  if (tempoms - tempoInicial >= tempoPisca)
+   { 
+
+    estadoLed = !estadoLed;
+    tempoInicial = tempoms;
+
+
+   }
    
+   
+  digitalWrite(pinLedVermelho, estadoLed);
   
   
 }
 
 
+-----------------------------------------------------------
+// Nome: Fernando Gomes Repelli.
+//Data: 06/03/2025.
+//Descrição: SEMAFORO.
+
+#define pinLedVermelho 8 
+#define pinLedVerde 13
+#define pinLedAmarelo 12
+#define tempoPiscaVerde 2000
+#define tempoPiscaAmarelo 1000
+#define tempoPiscaVermelho 3000
 
 
+  unsigned long tempoAtual ;
+  unsigned long tempoInicial = 0;
+  bool faseSemaforo = 0; 
+ 
+  
+void setup()
+{
+  pinMode(pinLedVermelho, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  pinMode(pinLedAmarelo, OUTPUT);
+  Serial.begin(9600);
+  
+    
+}
 
+  
+void loop()
+{
+   tempoms = millis();
+ 
+  if (tempoms - tempoInicial >= tempoPiscaVerde)
+   { 
+
+    estadoLed = !estadoLed;
+    tempoInicial = tempoms;
+
+
+   }
+   
+   
+  digitalWrite(pinLedVerde, estadoLed);
+
+
+if (tempoms - tempoInicial >= tempoPiscaAmarelo)
+   { 
+
+    estadoLed = !estadoLed;
+    tempoInicial = tempoms;
+
+
+   }
+   
+   
+  digitalWrite(pinLedAmarelo, estadoLed);
+
+if (tempoms - tempoInicial >= tempoPiscaVermelho)
+   { 
+
+    estadoLed = !estadoLed;
+    tempoInicial = tempoms;
+
+
+   }
+   
+   
+  digitalWrite(pinLedVermelho, estadoLed);
+
+
+  
+  
+}
 
 
 

@@ -1,0 +1,90 @@
+------------------
+Revisão do tempo.
+------------------
+
+
+//Crie uma variável que armazene de 1 a 5 e pare.
+//Cada condição acenda um led de cor diferente.
+//O programa dispensa o delay permitindo que outras tarefas sejam executadas.
+
+
+unsigned long tempoInicial = 0 ;
+
+
+
+void setup()
+{
+
+}
+
+void loop()
+{
+
+unsigned long tempoAtual = millis(); 
+//pega o tempo que o microcontrolador esta contando
+
+
+if(tempoAtual - tempoInicial >= 1000) //tempo necessário para comparação.
+{
+
+//Conteúdo a ser executado
+
+tempoInicial = tempoAtual
+
+}
+
+
+}
+
+
+
+
+----------------------------------------
+Utilização de botão na placa de Arduino
+-----------------------------------------
+/* Nome: Fernando Gomes Repelli
+Data: 10/03/2025
+Descrição: Ao apertar o botão acende o led da placa
+*/
+
+#define pinBotao  10
+#define pinLed 2
+#define pinLedL 13
+int cont = 0;
+
+
+void setup()
+{
+  pinMode(pinBotao, INPUT);
+  pinMode(pinLed,OUTPUT);
+  Serial.begin(9600);
+  
+  
+}
+
+void loop()
+{
+    static bool statusAnterior = 0;
+    bool statusAtual  = digitalRead(pinBotao);
+ 
+  
+   if(statusAtual  && !statusAnterior)
+   {
+   
+   cont++;
+   Serial.println(cont);
+   digitalWrite(pinLed, HIGH);
+   digitalWrite(pinLedL, HIGH);
+    
+  }
+
+  else
+  {
+     digitalWrite(pinLed,LOW);
+     digitalWrite(pinLedL, LOW);
+   }
+    statusAnterior = statusAtual;
+ 
+ 
+}
+
