@@ -1,0 +1,120 @@
+wokwi --> simulador.
+
+/* Nome: Fernando Gomes Repelli
+Data: 11/03/2025
+Descrição: Ao apertar o botão acende o led da placa e emite uma mensagem no display
+*/
+
+
+
+#include <LiquidCrystal_I2C.h> //inclusão de biblioteca
+
+//criação de objeto
+
+LiquidCrystal_I2C lcd(0x27, 20, 4); //tipo - nome do objeto - endereço em hexadecimal - linhas e colunas
+
+const int pinBotao1 = 8;
+const int pinLedVermelho = 13;
+
+
+
+
+void setup() {
+ 
+  pinMode(pinLedVermelho, OUTPUT); 
+  pinMode(pinBotao1, INPUT);
+  Serial.begin(9600);
+
+
+
+  lcd.init(); //inicia o objeto
+  lcd.print("Hello Word !!!");
+ 
+
+}
+
+void loop() {
+
+ static boll statusAnterior = 0;
+ bool statusAtual = digitalRead(pinBotao1);
+
+if(statusAtual && !statusAnterior)
+{
+digitalWrite(pinLedVermelho,High);
+lcd.print("Led Ligado");
+}
+else
+{
+ digitalWrite(pinLedVermelho,LOW);
+lcd.print("Led desligado");
+}
+
+statusAnterior = statusAtual;
+
+}
+
+
+
+}
+ 
+}
+
+EXERCÍCIO 1.
+---------------
+
+Ao apertar o botão o led deverá acender emitindo uma mensagem de que o led esta ligado e quando o botão estiver solto deverá emitir uma mensagem de desligado,
+
+//* Nome: Fernando Gomes Repelli
+Data: 11/03/2025
+Descrição: Ao apertar o botão acende o led da placa e emite uma mensagem no display
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 20, 4); //cria o objeto tipo - nome do objeto - endereço em hexadecimal - linhas e colunas
+
+const int pinBotao1 = 8;
+const int pinLedVermelho = 13;
+
+
+
+
+void setup() {
+ 
+  pinMode(pinLedVermelho, OUTPUT); 
+  pinMode(pinBotao1, INPUT);
+  Serial.begin(9600);
+  lcd.init();//inicia o objeto
+  lcd.backlight();//muda a cor de fundo do display
+ 
+
+  //lcd.init(); //inicia o objeto
+ // lcd.print("Hello Word !!!");
+
+
+}
+void loop()
+{
+ static bool statusAnterior = 0;
+ bool statusAtual = digitalRead(pinBotao1);
+
+if(statusAtual && !statusAnterior)
+{
+  digitalWrite(pinLedVermelho,HIGH);
+  lcd.setCursor(0,1); //direciona o cursor na tela
+  lcd.print("Led Ligado");
+}
+else
+{
+  digitalWrite(pinLedVermelho,LOW);
+  lcd.setCursor(0,1);
+  lcd.print("Led desligado");
+}
+
+statusAnterior = statusAtual;
+
+
+}
+
+
+
