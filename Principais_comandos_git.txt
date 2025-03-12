@@ -4,8 +4,8 @@ git init
 git add .
 git commit -m "Meus arquivos"
 git branch -M main
-git remote add orgin https://github.com/repelli
+git remote add origin c/User/24714193805/ATIVIDADES
 git push -u origin main
 
 
-https://github.com/repelli
+https://github.com/repe

@@ -1,0 +1,201 @@
+CORREÇÃO DO EXERCÍCIO.
+
+/* Nome: Fernando Gomes Repelli
+Data: 11/03/2025
+Descrição: Ao apertar o botão acende o led da placa e emite uma mensagem no display
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); //cria o objeto tipo - nome do objeto - endereço em hexadecimal - linhas e colunas
+
+const int pinBotao1 = 8; //usar char é mais economico
+const int pinLedVermelho = 13;
+
+
+
+
+void setup() {
+ 
+  pinMode(pinLedVermelho, OUTPUT); 
+  pinMode(pinBotao1, INPUT);
+  Serial.begin(9600);
+  lcd.init();//inicia o objeto
+  lcd.backlight();//muda a cor de fundo do display
+  lcd.setCursor(0,0); //lcd.home();
+  lcd.print("Led A:");
+  
+
+  //lcd.init(); //inicia o objeto
+ // lcd.print("Hello Word !!!");
+
+
+}
+void loop()
+{
+ static bool statusAnterior = 0;
+ bool statusAtual = digitalRead(pinBotao1);
+ static bool statusLedA=0;
+
+if(statusAtual && !statusAnterior) //botão precionado
+{
+  statusLedA =  !statusLedA;
+  digitalWrite(pinLedVermelho,statusLedA);
+  lcd.setCursor(6,0);
+
+ 	if(statusLedA)
+ 	  lcd.print("ON ");
+	else
+	  lcd.print("OFF");
+
+
+	
+   //direciona o cursor na tela
+} 
+
+else //botão solto
+{
+  digitalWrite(pinLedVermelho,LOW);
+  
+}
+
+statusAnterior = statusAtual;
+
+
+}
+
+------------------------------------
+
+/* Nome: Fernando Gomes Repelli
+Data: 12/03/2025
+Descrição: Ao apertar o botão acende o led da placa e emite uma mensagem no display utiliza dois botões e leds.
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); 
+const int pinBotaoVermelho = 13; 
+const int pinBotaoAmarelo = 10;
+const int pinLedVermelho = 8;
+const int pinLedAmarelo = 2;
+
+
+
+
+void setup() {
+ 
+  pinMode(pinLedVermelho, OUTPUT); 
+  pinMode(pinBotaoVermelho, INPUT);
+  pinMode(pinLedAmarelo, OUTPUT);
+  pinMode(pinBotaoAmarelo,INPUT);
+
+
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+  lcd.home();
+  lcdprint ("LED V OFF");
+  lcdprint ("LED A OFF");
+  
+
+
+
+}
+void loop()
+{
+ static bool statusAnteriorVermelho = 0;
+ bool statusAtualVermelho = digitalRead(pinBotaoVermelho);
+ static bool statusLedVermelho=0;
+  
+ static bool statusAnteriorAmarelo = 0;
+ bool statusAtualAmarelo = digitalRead(pinBotaoAmarelo);
+ static bool statusLedAmarelo=0;
+
+
+if(statusAtualVermelho && !statusAnteriorVermelho) //botão precionado
+{
+  statusLedVermelho =  !statusLedVermelho;
+  digitalWrite(pinLedVermelho,statusLedVermelho);
+  lcd.home();
+
+ 	 if(statusLedVermelho)
+ 	 	 lcd.print("ON ");
+    
+	 else
+        lcd.print("OFF");
+     
+	
+   //direciona o cursor na tela
+} 
+
+else //botão solto
+{
+  digitalWrite(pinLedVermelho,LOW);
+  
+}
+
+statusAnteriorVermelho = statusAtualVermelho;
+
+
+
+
+if(statusAtualAmarelo && !statusAnteriorAmarelo) //botão precionado
+{
+  statusLedAmarelo =  !statusLedAmarelo;
+  digitalWrite(pinLedAmarelo,statusLedAmarelo);
+  lcd.setCursor(6,0);
+
+ 	if(statusLedAmarelo)
+ 	  lcd.print("ON ");
+	else	 
+     	  lcd.print("OFF");
+	  
+
+
+	
+   //direciona o cursor na tela
+} 
+
+else //botão solto
+{
+  
+  digitalWrite(pinLedAmarelo,LOW);
+
+  
+}
+
+statusAnteriorAmarelo = statusAtualAmarelo;
+
+
+
+
+
+
+
+}
+
+
+
+
+EXERCICIO 2.
+-----------------
+
+imprima na serial qual tensão esta no potenciomentro em uma escala de 0 a 1023
+
+// C++ code
+//
+
+#define pinAnalogico A0
+
+void setup()
+{
+  Serial.begin(9600);
+  
+}
+
+void loop()
+{
+  int leituraA0 = analogRead(pinAnalogico); 
+  Serial.println((leituraA0*5)/1024.0);
+  
+}
