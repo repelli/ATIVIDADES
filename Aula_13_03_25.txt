@@ -1,0 +1,332 @@
+/*  Nome: Fernando Gomes Repelli
+Data: 13/03/2025.
+Descrição
+
+*/
+
+#include<LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16 ,2);
+
+
+
+void setup()
+{
+lcd.init();
+lcd.backlight();
+Serial.begin(9600);
+lcd.print(" ");
+
+
+
+}
+
+void loop()
+{
+
+//Serial.println(analogRead(A0));
+//delay(500);
+  if( analogRead(A0)> 1023 || analogRead(A0)< 130.5)
+{
+    lcd.home();
+	lcd.print(" ");
+   // delay(5000);
+
+}
+   else if( analogRead(A0)>=  920.7 && analogRead(A0) <= 1023)
+{
+    lcd.home();
+	lcd.print("ON 1");
+   // delay(5000);
+ 
+  }
+
+
+else if( analogRead(A0)>= 130.5  && analogRead(A0) <= 159.5)
+{
+  lcd.home();
+  lcd.print("ON 2");
+ // delay(5000);
+}
+else 
+  if( analogRead(A0)>=  296.1 && analogRead(A0) <= 361.9)
+{
+  lcd.home();
+  lcd.print("ON 3");
+ //  delay(5000);
+
+}
+else if( analogRead(A0)>=  454.5 && analogRead(A0) <= 555.5)
+{
+  lcd.home();
+  lcd.print("ON 4");
+ // delay(5000);
+
+}
+else if( analogRead(A0)>=  666.9 && analogRead(A0) <= 815.1)
+{
+  lcd.home();
+  lcd.print("ON 5");
+  //delay(5000);
+
+}
+
+}
+
+CORREÇÃO DO EXERCÍCIO.
+----------------------
+/*  Nome: Fernando Gomes Repelli
+Data: 13/03/2025.
+Descrição
+
+*/
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+
+
+
+
+
+
+#include<LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16 ,2);
+
+
+
+void setup()
+{
+lcd.init();
+lcd.backlight();
+Serial.begin(9600);
+
+
+
+}
+
+void loop()
+{
+int valorLeitura = analogRead(A0);
+if(valorLeitura == valorBotao1)
+{
+lcd.home();
+lcd.print("Botao 1 ON" );
+}
+else if (valorLeitura >= valorBotao2 * 0.9 && valorLeitura <=valorBotao2 * 1.1)
+{
+lcd.home();
+lcd.print("Botao 2 ON" );
+
+}
+else if (valorLeitura >= valorBotao3 * 0.9 && valorLeitura <=valorBotao3 * 1.1)
+{
+lcd.home();
+lcd.print("Botao 3 ON");
+
+}
+
+else if (valorLeitura >= valorBotao4 * 0.9 && valorLeitura <=valorBotao4 * 1.1)
+{
+lcd.home();
+lcd.print("Botao 4 ON");
+
+}
+else if (valorLeitura >= valorBotao5 * 0.9 && valorLeitura <=valorBotao5 * 1.1)
+{
+lcd.home();
+lcd.print("Botao 5 ON");
+
+}
+else
+{
+lcd.home();
+lcd.print("0");
+
+}
+
+
+
+
+}
+
+
+---------------------------------------------------------------------
+
+PARTE 3
+
+
+
+/*  Nome: Fernando Gomes Repelli
+Data: 13/03/2025.
+Descrição
+
+*/
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+
+
+
+
+
+
+#include<LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16 ,2);
+
+
+
+void setup()
+{
+lcd.init();
+lcd.backlight();
+Serial.begin(9600);
+lcd.setCursor(1,0);
+lcd.print("LED A OFF");
+lcd.setCursor(1,1);
+lcd.print("LED B OFF");
+
+
+
+
+}
+
+void loop()
+{
+  //INICIO DE TRATAMENTO DO BOTAO
+  
+static bool posicao = 0 ; 
+
+int valorLeitura = analogRead(A0);
+int valorAnteriorLeitura = 1023;
+  
+  //BOTAO 1 PRESSIONADO
+  if(valorAnteriorLeitura  == 1023 && valorLeitura == 0)
+  {
+    posicao = 0;
+    Serial.println(posicao);
+  }
+  //BOTAO 2 PRESSIONADO
+  else if (valorAnteriorLeitura == 1023
+           && valorLeitura >= valorBotao2 *0.9
+           && valorLeitura <= valorBotao2 *1.1)
+        {
+   			 posicao = 1;
+    		Serial.println(posicao);
+		}
+valorAnteriorLeitura = valorLeitura;
+  
+
+
+//TRATAMENTO DO DISPLAY
+  
+  if(posicao == 0)
+  {
+  
+ 	    lcd.setCursor(0,0);
+  		lcd.print(">");
+        lcd.setCursor(0,1);
+        lcd.print(" ");
+   }
+  else
+    {
+        lcd.setCursor(0,1);
+        lcd.print(">");
+        lcd.setCursor(0,0);
+        lcd.print(" ");
+    }
+}
+
+
+
+
+----------------------------------------------
+
+
+PARTE 3
+
+
+
+/*  Nome: Fernando Gomes Repelli
+Data: 13/03/2025.
+Descrição
+
+*/
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+
+
+
+
+
+
+#include<LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16 ,2);
+
+
+
+void setup()
+{
+lcd.init();
+lcd.backlight();
+Serial.begin(9600);
+lcd.setCursor(1,0);
+lcd.print("LED A OFF");
+lcd.setCursor(1,1);
+lcd.print("LED B OFF");
+
+
+
+
+}
+
+void loop()
+{
+  //INICIO DE TRATAMENTO DO BOTAO
+  
+static bool posicao = 0 ; 
+
+int valorLeitura = analogRead(A0);
+int valorAnteriorLeitura = 1023;
+  
+  //BOTAO 1 PRESSIONADO
+  if(valorAnteriorLeitura  == 1023 && valorLeitura == 0)
+  {
+    posicao = 0;
+    Serial.println(posicao);
+  }
+  //BOTAO 2 PRESSIONADO
+  else if (valorAnteriorLeitura == 1023
+           && valorLeitura >= valorBotao2 *0.9
+           && valorLeitura <= valorBotao2 *1.1)
+        {
+   			 posicao = 1;
+    		Serial.println(posicao);
+		}
+valorAnteriorLeitura = valorLeitura;
+  
+
+
+//TRATAMENTO DO DISPLAY
+  
+  if(posicao == 0)
+  {
+  
+ 	    lcd.setCursor(0,0);
+  		lcd.print(">");
+        lcd.setCursor(0,1);
+        lcd.print(" ");
+   }
+  else
+    {
+        lcd.setCursor(0,1);
+        lcd.print(">");
+        lcd.setCursor(0,0);
+        lcd.print(" ");
+    }
+}
