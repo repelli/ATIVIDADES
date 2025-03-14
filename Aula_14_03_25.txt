@@ -1,0 +1,59 @@
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+#define ledVerde 11
+#define ledVermelho 10
+
+
+#include < LiquidCrystal_I2C.h>
+
+LiquidCristal_I2C lcd(0x27, 16, 2);
+
+void setup()
+{
+pinMode(ledVerde, OUTPUT);
+pinMode(ledVermelho,OUTPUT);
+Serial.begin(9600);
+lcd.init();
+lcd.backlight();
+lcd.setCursor(1,0);
+lcd.print("LED A OFF");
+lcd.setCursor(1,1);
+lcd.print("LED B OFF");
+
+}
+
+void loop()
+{
+ static bool posição = 0 ;
+ bool statusLedVerde = 0;
+ bool statusLedVermelho = 0;
+
+//INICIO DO TRATAMENTO DO BOTÃO.
+
+int valorLeitura = analogRead(A0);
+int valorAnteriorLeitura = 1023;
+
+//PRESSIONAMENTO DO BOTÃO 1
+
+if ( valorAnteriorLeitura == 1023 && valorLeitura = 0)
+{
+       	posicao = 1;
+} //BOTÃO 2 PRESSIONADO
+else if( valorAnteriorLeitura == 1023 &&
+        valorLeitura >= 0.9*valorBotao2
+        valorLeitura <= 1.1*valorBotao2)
+         {
+            posição = 0;
+
+	 }//Botão 5 pressionado
+else if
+
+
+
+
+}
+
+
