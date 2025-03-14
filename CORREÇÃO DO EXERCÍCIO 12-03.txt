@@ -1,0 +1,105 @@
+CORREÇÃO DO EXERCÍCIO.
+
+/* Nome: Fernando Gomes Repelli
+Data: 12/03/2025
+Descrição: Ao apertar o botão acende o led da placa e emite uma mensagem no display utiliza dois botões e leds.
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); 
+const int pinBotaoVermelho = 13; 
+const int pinBotaoAmarelo = 10;
+const int pinLedVermelho = 8;
+const int pinLedAmarelo = 2;
+
+
+
+
+void setup() {
+ 
+  pinMode(pinLedVermelho, OUTPUT); 
+  pinMode(pinBotaoVermelho, INPUT);
+  pinMode(pinLedAmarelo, OUTPUT);
+  pinMode(pinBotaoAmarelo,INPUT);
+
+
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+  lcd.home();
+ 
+  
+
+
+}
+void loop()
+{
+ static bool statusAnteriorVermelho = 0;
+ bool statusAtualVermelho = digitalRead(pinBotaoVermelho);
+ static bool statusLedVermelho=0;
+
+if(statusAtual && !statusAnterior) //botão precionado
+{
+  statusLedVermelho =  !statusLedVermelho;
+  digitalWrite(pinLedVermelho,statusLedVermelho);
+  lcd.setCursor(6,0);
+
+ 	if(statusLedVermelho)
+ 	  lcd.print("LED VERMELHO LIGADO ");
+	else
+	 {
+
+	  }
+
+
+	
+   //direciona o cursor na tela
+} 
+
+else //botão solto
+{
+  digitalWrite(pinLedVermelho,LOW);
+  
+}
+
+statusAnteriorVermelho = statusAtualVermelho;
+
+
+
+
+
+if(statusAtual && !statusAnterior) //botão precionado
+{
+  statusLedAmarelo =  !statusLedAmarelo;
+  digitalWrite(pinLedAmarelo,statusLedAmarelo);
+  lcd.setCursor(6,0);
+
+ 	if(statusLedAmarelo)
+ 	  lcd.print("LED VERMELHO LIGADO ");
+	else
+	 {
+
+	  }
+
+
+	
+   //direciona o cursor na tela
+} 
+
+else //botão solto
+{
+  digitalWrite(pinLedVermelho,LOW);
+  digitalWrite(pinLedAmarel,LOW);
+
+  
+}
+
+statusAnterior = statusAtual;
+
+
+
+
+
+
+}
