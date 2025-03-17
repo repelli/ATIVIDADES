@@ -1,0 +1,228 @@
+/*  Nome: Fernando Gomes Repelli
+Programa: Leitura de botões
+Data: 17/03/2025.
+Descrição: No programa há o direcionamento do display de acordo com o
+pressionar do botão, ligando e desligando e variando sua luminosidade.
+*/
+
+#include<LiquidCrystal_I2C.h>
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+#define pinLedA 11
+#define pinLedB 10
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+
+void setup()
+{
+
+Serial.begin(9600);
+lcd.init();
+lcd.backlight();
+lcd.setCursor(0,0);
+lcd.print(">LED A OFF");
+lcd.setCursor(1,1);
+lcd.print("LED B OFF");
+  
+pinMode(pinLedA, OUTPUT);
+pinMode(pinLedB,OUTPUT);
+
+}
+
+
+
+void loop()
+{
+ 
+//variáveis locais
+
+static bool posicao = 0;
+static bool estadoLedA = 0;
+static bool estadoLedB = 0;
+static byte intensidadeLedA =0;
+static byte intensidadeLedB = 0;
+static bool alteracao = 0 ;
+
+
+//*****INICIO DE TRATAMENTO DE BOTÕES *****
+
+int valorLeitura = analogRead(A0); // le a entrada analógica
+static int valorLeituraAnterior = 1023;// --> valor do botão solto/para não perder o valor static
+
+//BOTAO 1
+//---------
+if(valorLeitura == 0 &&
+valorLeituraAnterior == 1023) //--> quando o botão 1 for pressionado
+{
+  posicao = 0; 
+  alteração = 1;
+
+}
+//BOTAO 2
+//---------
+else if( valorLeitura >= valorBotao2*0.9 &&
+        valorLeitura <= valorBotao2*1.1 &&
+        valorLeituraAnterior == 1023)
+	{
+   		posicao = 1 ;
+                 alteração = 1;
+
+	}
+//BOTAO 3
+//---------
+else if( valorLeitura >= valorBotao3*0.9 &&
+        valorLeitura <= valorBotao3*1.1 &&
+        valorLeituraAnterior == 1023)
+	{
+           //diminui a intensidade
+           alteração = 1;
+
+         
+         if(!posicao && estadoLedA)
+            if(intensidadeLedA >0 100) 
+              intensidadeLedA-=10;
+           if(intensidadeLedA ==0)
+              estadoLedA = 0;
+          else if(posição == 1 && estadoLedB)
+                if(intensidadeLedB > 0) 
+              intensidadeLedB-=10;
+               if(intensidadeLedB ==0)
+              estadoLedB = 0;
+
+
+
+
+	}
+
+//BOTAO 4
+//----------
+else if( valorLeitura >= valorBotao4*0.9 &&
+        valorLeitura <= valorBotao4*1.1 &&
+        valorLeituraAnterior == 1023)
+	{
+          //aumenta a intensidade
+            alteração = 1;
+
+       
+           if(!posicao && estadoLedA) 
+              if(intensidadeLedA < 100) 
+
+              intensidadeLedA+=10;
+           else if(posição == 1 && estadoLedB)
+              if(intensidadeLedA < 100) 
+
+              intensidadeLedB+=10;
+
+	}
+
+//BOTAO 5
+//---------
+else if( valorLeitura >= valorBotao5*0.9 &&
+        valorLeitura <= valorBotao5*1.1 &&
+        valorLeituraAnterior == 1023)
+ 	{ alteração = 1;
+
+		if(posicao == 0) //trata o led
+		{
+
+			estadoLedA = !estadoLedA;
+                     if(estadoLedA && intensidadeLedA ==0)
+                            intensidade = 10;
+		}
+		else
+                {
+                       estadoLedB = !estadoLedB;
+                       if(estadoLedB && intensidadeLedB ==0)
+                            intensidade = 10;
+
+		}
+
+	}
+valorLeituraAnterior = valorLeitura; 
+
+
+//FIM DE TRATAMENTO DE BOTÃO.
+
+
+
+//***** TRATAMENTO DO DISPLAY *****
+//MOSTRA A SETA NA POSICAO CORRETA
+if(alteração){
+  alteração = 0;
+if(posicao == 0)
+ {
+	lcd.setCursor(0,1);
+	lcd.print(" ");
+        lcd.setCursor(0,0);
+        lcd.print(">");
+
+
+ }
+else
+  {
+        lcd.setCursor(0,0);
+        lcd.print(" ");
+        lcd.setCursor(0,1);
+        lcd.print(">");
+
+  }
+
+//*****MOSTRAR O ESTADO DO LED *****
+
+ if(!estadoLedA)
+ {
+
+  lcd.setCursor(7,0);
+  lcd.print(intensidadeLedA);
+  lcd.print(" % ");
+ }
+else
+  {
+  lcd.setCursor(7,0);
+  lcd.print("ON ");
+  }
+
+if(!estadoLedB)
+ {
+
+  lcd.setCursor(7,1);
+  lcd.print("OFF ");
+ }
+else
+  {
+  lcd.setCursor(7,1);
+  lcd.print(intensidadeLedB);
+  lcd.print(" % ");
+  
+
+  }
+
+
+
+//***** TRATAMENTO DOS LEDS *****
+
+    if(intensidadeLedA == 0)
+       digitalWrite(pinLedA, LOW);
+    else
+    	analogWrite(pinLedA, intensidadeLedA);
+    if(intensidadeLedB ==0)
+        digitalWrite(pinLedB,LOW);
+    else
+    	analogWrite(pinLedB, intensidadeLedB);
+   
+
+        serial.println(intensidadeLedA);
+        serial.println(intensidadeLedB);
+ 
+}
+
+  }
+
+
+
+
+
