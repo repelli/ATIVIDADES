@@ -1,0 +1,145 @@
+-------------
+EXERCÍCIO.
+-------------
+
+Imprima na serial os oito primeiro números da sequência de Fibonacci.
+
+
+/*Programa: Calculo de Fribonacci
+Nome: Fernando Gomes Repelli
+Data: 18/03/2025
+Descrição: O programa escreve o càlculo da série de Fribonacci
+*/
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+   int anterior = 1;
+   int proximo = 1;
+   int numero = 0;
+  
+  
+  anterior = proximo;
+  Serial.println(anterior);
+  Serial.println(proximo);
+  
+ 
+  
+  
+  
+  for(int i=2; i<=9; i++)
+      {
+    	 numero = anterior + proximo;
+ 	 anterior = proximo;
+	 proximo = numero;
+         Serial.println(numero);
+      }
+  
+  
+  /* while(i<=7)
+  {
+  
+   	numero = anterior + proximo;
+ 	anterior = proximo;
+	proximo = numero;
+         Serial.println(numero);
+         i=+i;
+    
+  }
+  */
+  
+  /*
+  
+  do
+ {
+ 
+ 	numero = anterior + proximo;
+ 	anterior = proximo;
+	proximo = numero;
+        Serial.println(numero);
+         i=+i;
+ 
+ 
+ }while(i<7);
+}
+*/
+}
+void loop()
+{
+  
+  
+    
+  
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
+
+----------
+CORREÇÃO.
+-----------
+
+void setup()
+{
+
+  
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+  int a = 0;
+  int b = 1;
+  for(int i =0; i<10;i++)
+ {
+
+	Serial.println(a);
+        int proximo = a + b;
+        a = b ;
+        b = proximo;
+
+ }
+
+//int permite até 24 da sequencia
+//com insigne até 24
+
+   
+}
+
+
+void loop()
+{
+  
+  
+    
+  
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
+
+
+
+
+
+
+
+
+//VETORES - ARRAY
+
+
+
+int pinLeds[5] = {1,2,3,4,5}
+
+
+
+
+
+
+https://docs.arduino.cc/built-in-examples/basics/Blink/
+
+https://docs.arduino.cc/language-reference/#structure
+
