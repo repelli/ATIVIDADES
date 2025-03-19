@@ -1,0 +1,36 @@
+CORREÇÃO DO PROGRAMA.
+-----------------------
+
+
+/*Programa: MATRIZES - ARRAYS.
+Nome: Fernando Gomes Repelli.
+Data: 18/03/2025
+Descrição: é criado um array de cinco posições que acende e 
+apaga os leds conforme se percorre o array.
+*/
+
+const int pinLeds[5]={1,2,3,4,5};
+
+void setup()
+{
+  int i =0;
+  for(int i=0 ; i< 5; i++)
+  {
+      pinMode(pinLeds[i], OUTPUT);
+  }
+}
+
+void loop()
+{
+  for(int i=0 ; i<5; i++)
+  {
+    digitalWrite(pinLeds[i],HIGH);
+    delay(300);
+  }
+   for(int i=0 ; i<5; i++)
+  {
+    digitalWrite(pinLeds[i],LOW);
+    delay(300);
+  }
+  
+}
