@@ -1,0 +1,214 @@
+EXERCÍCIO 1 
+-----------
+FAZER UM PROGRAMA QUE QUE CLACULE A TABUADA DE UM NÚMERO E MOSTRE NO MONITOR SERIAL
+
+void Setup()
+{
+  Serial.begin(9600);
+
+}
+
+void loop()
+{
+	for( int i =1; i=10;i++)
+	{	
+          serial.print (i);
+          serial.print (*);
+           for (int j=0;j=10.j++)
+            {
+             serial.print(i);
+             serial.print("=");
+             serial.print(i*j);
+    
+            }
+	}
+
+
+
+for (int i = 1 ; i <=10; i++)
+{
+  for(int j = 0; j<=10; i++)
+    {
+    Serial.print(i);
+    Serial.print(" * ");
+    Serial.print(j);
+    Serial.print( i*J);
+    serial.println();
+}
+}
+}
+
+EXERCÍCIO 2 
+-----------
+FAÇA UM PROGRAMA QUE AVALIE UM NÚMERO E VERFIQUE SE ESTE NÚMERO ESTA DENTRO DE UM ARRAY, CASO ESSE NÚMERO SEJA ENCOTNRADO MOSTRE NO CONSOLE "NUMERO ENCONTRADO", CASO CONTRÁRIO "NÚMERO NÃO ENCONTRADO".
+
+// C++ code
+//
+const int numeros[10] = {1,2,3,4,5,6,7,8,9,0};
+
+void setup()
+{
+  Serial.begin(9600);
+  int procurado = 100;
+  bool achou = 0;
+  int i =0 ;
+  
+ for( i = 0 ; i < 10;i++)
+    {
+      
+
+     if(procurado == numeros[i])
+     {
+       
+       achou = 1;
+       
+       
+        
+       
+      }
+     else
+      {
+       achou = 0;
+      
+      
+      }
+     
+      
+
+    }
+  
+    if(achou == 1)
+      {
+    
+          Serial.print("Numero: ");
+          Serial.print(procurado);
+          Serial.print(" encontrado. ");
+          
+      }
+   else
+     {
+   
+  		 Serial.print("numero nao encontrado ");
+   
+     }
+     
+  
+}
+
+void loop()
+{
+	
+	}
+
+
+
+EXERCICIO 3 
+----------------
+
+FAÇA UM PROGRAMA QUE ACENDA 3 LEDS, UM POR UM, MANTENHA OS ACESSO POR 3 SEGUNDOS E EM SEGUIDA APAGUE-0S, UM POR UM
+
+
+#define pinLedA 8
+#define pinLedB 12
+#define pinLedC 13
+void setup()
+{
+  pinMode(pinLedA, OUTPUT);
+  pinMode(pinLedB, OUTPUT);
+  pinMode(pinLedC, OUTPUT);
+ 
+      
+    }
+  
+
+
+void loop()
+{
+  for(int i = 0 ; i <3; i++)
+  {
+    digitalWrite(pinLedA,HIGH);
+    delay(3000);
+    digitalWrite(pinLedA,LOW);
+   
+    digitalWrite(pinLedB,HIGH);
+    delay(3000);
+    digitalWrite(pinLedB,LOW);
+    
+    digitalWrite(pinLedC,HIGH);
+    delay(3000);
+    digitalWrite(pinLedC,LOW);
+}
+}
+
+
+
+EXERCICIO 4
+------------
+
+Faça um programa que acenda e apague 3 leds, de forma progressiva, enquanto um botão estiver pressionado.
+
+
+
+if = 0
+acende a
+
+if = 0
+acende b
+
+if = 0
+acende c
+
+
+
+
+
+/ C++ code
+//
+#define ledVerde 10
+#define ledAmarelo 12
+#define ledVermelho 13
+#define botao 8
+
+
+void setup()
+{
+  pinMode(botao, INPUT_PULLUP);
+  pinMode(ledVerde,OUTPUT);
+  pinMode(ledAmarelo,OUTPUT);
+  pinMode(ledVermelho,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{   
+  static int statusBotao = 1 ;
+  
+  
+  if(statusBotao)
+      {
+    Serial.print(statusBotao);
+  
+    digitalWrite(ledVermelho,HIGH);
+    delay(1000);
+    digitalWrite(ledAmarelo,HIGH);
+    delay(1000);
+    digitalWrite(ledVerde,HIGH);
+    delay(1000);
+  
+  }else
+    {
+    digitalWrite(ledVermelho,LOW);
+    digitalWrite(ledAmarelo,LOW);
+    digitalWrite(ledVerde,LOW);
+    
+  
+  
+  }
+    
+    
+ 
+} 
+
+ 
+
+
