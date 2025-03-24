@@ -1,0 +1,113 @@
+wsl --upate --> cmd
+
+
+Instalação de extensões no VS Code.
+
+-Dracula Theme Official
+-Portuguese language pack for visual studio code
+-C/C++ 
+-C/C++  extension pack
+-C/C++  theme
+-Better comments
+-PlataformIo IDE
+ctr+shift+p --> configura a linguagem
+
+-------------
+PISCAR O LED
+--------------
+
+#include <Arduino.h>
+
+#define pinLed 2
+
+void setup()
+{
+
+  pinMode(pinLed, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(pinLed, HIGH);
+  delay(300);
+  digitalWrite(pinLed, LOW);
+  delay(300);
+}
+
+
+boot pino 0
+PISCAR O LED SE O BOTAO BOOT ESTIVER APERTADO
+
+#define pinLed 0
+#define pinLedAzul 2
+
+#include <Arduino.h>
+
+void setup()
+{
+pinMode(pinLed,INPUT);
+pinMode(pinLedAzul,OUTPUT);
+
+{
+
+
+
+
+
+
+}
+
+void loop()
+{
+boole apertado ;
+
+if(!apertado)
+{
+digitalWrite(PinLedAzul,HIGH);
+delay(300);
+}
+else
+{
+digitalWrite(PinLedAzul,LOW);
+
+}
+
+
+
+}
+
+-------------------------------------
+PISCA O LED QUANDO APERTA O BOTÃO BOOT
+--------------------------------------
+
+#include <Arduino.h>
+
+#define pinLed 0
+#define pinLedAzul 2
+
+
+
+void setup()
+{
+  pinMode(pinLed, INPUT);
+  pinMode(pinLedAzul, OUTPUT);
+
+}
+  
+
+  void loop()
+  {
+    boolean apertado = digitalRead(pinLed);
+
+    if (apertado)
+    {
+      digitalWrite(pinLedAzul, HIGH);
+      delay(300);
+    }
+    else
+    {
+      digitalWrite(pinLedAzul, LOW);
+    }
+  }
+
+
