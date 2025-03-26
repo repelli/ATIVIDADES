@@ -1,0 +1,111 @@
+
+--> placa espressif
+
+39/42 pinos para o dysplay
+drivers para placa 2102
+
+AULA 44
+----------------------
+
+#include < Arduino.h>
+
+void setup()
+{
+
+
+
+
+}
+void loop()
+{
+
+
+
+
+}
+
+
+em platformio.ini --> monitor_speed =  15200;
+
+
+
+
+void setup()
+{
+
+Serial.begin(9600); //baudRate --> taxa de transferência.
+
+
+}
+
+void loop()
+{
+
+static int contagem = 0;
+Serial.println(contagem++);
+delay(300);
+
+
+
+}
+
+
+
+
+vcc positivo
+vdd negativo
+rs comando dado
+rw leitura e escrita
+e enable habilita o comndo
+d0 a 7 bite de comando envia
+
+
+
+
+
+#include <Arduino.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,20,4); //*instanciou o objeto - criou o objeto
+
+void setup()
+{
+
+Serial.begin(9600); //baudRate --> taxa de transferência.
+lcd.init();
+lcd.backlight();
+lcd.printf("CORINTHIANS CAMPEAO PAULISTA 2025 !!!");
+
+
+
+}
+
+void loop()
+{
+
+
+
+
+SITE PARA VERIFICAR A PINAGEM:https://www.google.com/imgres?q=ESP32%20V4%20PINOS&imgurl=https%3A%2F%2Fblog.eletrogate.com%2Fwp-content%2Fuploads%2F2018%2F11%2FESP32-DEVKIT-V4-pinout-v2.jpg&imgrefurl=https%3A%2F%2Fblog.eletrogate.com%2Fconhecendo-o-esp32-introducao-1%2F&docid=NLJ6Ka4fHyv-rM&tbnid=X1v9F015pL9KiM&vet=12ahUKEwj1y7WIraWMAxVKqZUCHY_0J3kQM3oECE0QAA..i&w=3000&h=2000&hcb=2&ved=2ahUKEwj1y7WIraWMAxVKqZUCHY_0J3kQM3oECE0QAA
+
+
+
+VCC --> positivo
+VDD -->  negativo
+RS -->  comando dado
+RW --> leitura e escrita
+E --> enable habilita o comando
+D0 a D7 bite de comando envia
+
+
+COMBINAÇÃO DOS LEDS LCD.
+--------------------
+LED    PLACA
+GND --> GND
+VDD --> 3V3
+VO -->  D21
+RS --> D23 
+
+
+
+

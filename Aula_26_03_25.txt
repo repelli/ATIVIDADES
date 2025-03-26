@@ -1,0 +1,95 @@
+#define pinBotao 4
+#define pinLed 2
+int cont = 0;
+void setup()
+{
+	pinMode(pinBotao,INPUT_PULLUP);
+	pinMode(pinLed, OUTPUT);
+	Serial.begin(9600);
+
+}
+
+void loop()
+{  
+    bool statusAtual = digitalRead(pinBotao);
+	static bool statusAnterior = 0 ;
+    
+	if(!statusAnterior && statusAtual)
+	 {
+
+		digitalWrite(pinLed, HIGH);
+		delay(300);
+        cont ++;
+     }  
+    else
+     { 
+	  digitalWrite(pinLed,LOW);
+	
+
+     }
+
+  statusAnterior = statusAtual;
+Serial.println("Botao apertado: ");
+Serial.println(cont);
+Serial.println("vezes");
+delay(300);
+}
+
+EXERCICIO 2
+------------
+
+
+
+#define pinButton 5
+
+
+void setup()
+{
+	 
+}
+
+void loop()
+{  
+        bool estadoAtual = digitalRead(pinButton);
+        static bool estadoAnterior = 1;
+        static bool UltimaAcao;
+       
+        static unsigned long tempoAnteriorDebouce = 0 ;
+	unsigned long tempoAtual = millis();
+        unsigned long tempoDebounce = 50;
+       
+         static int contagem  = 0; 
+   //INICIA O TRATAMENTO DE RUÍDO DO BOTÃO.    
+
+     
+    if(estadoAtual != estadoAnteriorBotao)
+	{
+	  
+          tempoAnteriorDebounce = tempoAtual; //marca a hora da alteração
+
+//verifica estado esta estável a bastante tempo
+
+     if((tempoAtual -  tempoAnteriorDebounce) > tempoDebounce )
+       {
+         if(estadoAtualBotao != ultimaAcao)//houve alteração do proposital do estado do botão
+          {
+              ultimaAcao = estadoAtualBotao;
+            if(!estadoAtualBotao ) //botão apertado
+              {
+               contagem ++;
+               Serial.println(contagem);}
+
+            else{ //botão solto
+           }
+             
+	  }
+        
+	
+ estadoAnteriorBotao = estadoatualBotao;
+
+
+//FINAL DO TRATAMENTO DO BOTÃO.
+    
+}
+
+
