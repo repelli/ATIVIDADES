@@ -1,0 +1,75 @@
+#include <Arduino.h>
+
+#define pinLed 5
+
+//PROTÓTIPO DA FUNÇÃO. --> DEVE USAR ANTES PARA NÃO DAR ERRO
+
+void ligaLed(uint8_t);
+void desligaLed(uint8_t);
+
+void setup() {
+  pinMode(pinLed, OUTPUT);
+}
+
+void loop() {
+ ligaLed(pinLed);
+ delay(300);
+
+ desligaLed(pinLed);
+ delay(300);
+}
+
+
+
+
+void ligaLed(uint8_t pin)
+{
+
+digitalWrite(pinLed,HIGH);
+delay(300);
+
+}
+
+void desligaLed(uint8_t pin)
+{
+  digitalWrite(pinLed,LOW);
+  
+}
+
+/*
+void ligaLed() -->sem parametro
+{
+
+digitalWrite(pin,HIGH);
+delay(300);
+*/
+
+-----------------------------------------
+#include <Arduino.h>
+
+int calculaSegundoGrau(int ,int ,int );
+
+void setup(){
+  Serial.begin(9600);
+  int raizDaFuncao = calculaSegundoGrau(1,2,-15);
+  Serial.print("A raiz e: ");
+  Serial.println(raizDaFuncao);
+  
+
+}
+
+void loop()
+{
+
+}
+
+int calculaSegundoGrau(int a, int b, int c)
+{
+
+int d = ((b*b) -(4*a*c));
+
+int resultado = (-b + sqrt(d))/(2*a);
+
+return resultado;
+
+}
