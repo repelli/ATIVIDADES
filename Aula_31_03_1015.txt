@@ -1,0 +1,98 @@
+#include <Arduino.h> //-> não incluir no tinkercad  
+#include <LiquidCrystal_I2c.h>
+
+#define pinButton 23
+#define pinLed 15
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+void contagem_regressiva();
+void foguetinho();
+
+void setup()
+{
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+ 
+  pinMode(pinLed, OUTPUT);
+  pinMode(pinButton, INPUT_PULLUP);
+}
+
+void loop()
+{
+  bool estadoAtualBotao = digitalRead(pinButton);
+  static bool estadoAnteriorBotao = 1;
+  static bool ultimaAcao;
+
+  static unsigned long tempoAnteriorDebounce = 0;
+  unsigned long tempoAtual = millis();
+  unsigned long tempoDebounce = 50;
+
+  // !INICIA O TRATAMENTO DE RUÍDO DO BOTÃO.
+
+  if (estadoAtualBotao != estadoAnteriorBotao)
+  {
+
+    tempoAnteriorDebounce = tempoAtual; // marca a hora da alteração
+  }
+  // verifica estado esta estável a bastante tempo
+
+  if ((tempoAtual - tempoAnteriorDebounce) > tempoDebounce)
+  {
+    if (estadoAtualBotao != ultimaAcao) // houve alteração do proposital do estado do botão
+    {
+      ultimaAcao = estadoAtualBotao;
+      if (!estadoAtualBotao) // botão apertado
+      {
+
+        Serial.println("Corinthians campeao Paulista de 2025 !!!");
+        lcd.home();
+        lcd.print("Corinthians campeao");
+        lcd.setCursor(0, 1);
+        lcd.print("Paulista de 2025 !!!");
+        digitalWrite(pinLed, HIGH);
+        contagem_regressiva(); // chamada da função
+        foguetinho();          // chamada da função
+      }
+
+      else
+      { // botão solto
+        digitalWrite(pinLed, LOW);
+        lcd.clear();
+      }
+    }
+  }
+  estadoAnteriorBotao = estadoAtualBotao;
+}
+//! FINAL DO TRATAMENTO DO BOTÃO.
+
+void contagem_regressiva(void)
+{
+
+  for (int i = 5; i >= 0; i--)
+  {
+   
+    
+    Serial.print("...");
+    Serial.println(i);
+     delay(500);
+   
+  }
+  Serial.println("Decolando!!!");
+}
+
+void foguetinho(void)
+{
+  Serial.println("/ \\");
+  delay(500);
+  for (int i = 0; i <= 5; i++)
+  {
+    Serial.println("| |");
+    delay(500);
+  }
+  Serial.println("__");
+  delay(500); // Atraso final
+}
+
+
+
