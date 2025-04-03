@@ -1,0 +1,147 @@
+PORTAS LÓGICAS.
+
+PORTA LÓGICA E 
+
+A 	B	S
+0	0	0	
+0	1	0
+1	0	0
+1	1	1
+
+
+PORTA LÓGICA OU
+
+A	B	S
+0	0	0
+0	1	1
+1	0	1
+1	1	1
+
+X X X X X X X X -> 1BYTE
+0 0 0 0 0 0 0 0
+
+
+<<1 --> OPERADOR DE ROTAÇÃO.
+
+
+int resultado = chanalA <<1 | chanalB
+
+
+
+
+s
+
+if( estadoAtual != estadoAnterior)
+
+    serialf.println(estadoAtual)
+
+if(estadoAtual ==3)
+
+   serial.println("----------------)
+
+estado anterior = estadoAtual
+
+
+--------------------------------------------------
+CÓDIGO
+------------------------------------------------
+#include <Arduino.h>
+#include <Wire.h>
+#include<LiquidCrystal_I2C.h>
+
+
+LiquidCrystal_I2C lcd(0x27,20,4);
+
+#define pinCLK 18
+#define pinDT 5
+#define pinSw 2
+
+
+bool estadoAtualCLK = false;
+bool estadoAtualDT = false;
+bool estadoAnteriorCLK = false;
+bool estadoAnteriorDT = false;
+
+
+
+void setup() {
+
+  Serial.begin(9600);
+  pinMode(pinCLK, INPUT);
+  pinMode(pinDT, INPUT);
+  //pinMode(pinSW, INPUT);
+
+lcd.init();
+lcd.backlight();
+lcd.home();
+//lcd.setCursor();
+
+  
+}
+
+void loop() {
+ 
+ estadoAtualCLK = digitalRead(pinCLK);
+ estadoAtualDT = digitalRead(pinDT);
+
+
+if(estadoAtualCLK != estadoAnteriorCLK || estadoAtualDT != estadoAnteriorDT)
+{
+
+ 
+ estadoAnteriorCLK = estadoAtualCLK;
+ estadoAnteriorDT = estadoAtualDT;
+
+
+ Serial.println(estadoAtualCLK);
+ Serial.print(estadoAtualDT);
+
+
+
+}
+
+
+}
+
+00
+01
+10
+11
+
+if(!estadoAtualCLK && !estadoAtualDT)
+
+
+
+if(!estadoAtualCLK && estadoAtualDT)
+
+
+
+if(estadoAtualCLK && !estadoAtualDT)
+
+
+
+if(estadoAtualCLK && estadoAtualDT)
+
+
+
+
+int deslocaEsquerda()
+{
+int cont;
+cont = cont --;
+
+
+}
+
+int deslocaDireita()
+{
+int cont;
+cont = cont++;
+
+
+
+}
+
+
+
+https://wokwi.com/projects/new/esp32
