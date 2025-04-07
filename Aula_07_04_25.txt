@@ -1,0 +1,267 @@
+#include<Arduino.h>
+#define canalA 5 //CLK
+#deffine canalB 18 //DT
+
+const int8_t tabale_transicao[4][4] //matriz bidimensional
+//+1 horário
+//0 parado
+//-1 anti-horário
+
+//Tabela de transcrição que vai combinar a posição anterior com a posição atual e retornar se deve ser incrementado ou decrementado o movimento
+{0,1,-1,0},
+{-1,0,0,1},
+{1,0,0,-1},
+{0,-1,1,0}
+}
+//horário 3210
+/anti 1023
+
+estadoAnterioEncontder estadoAtual enconder 
+void setup()
+{
+pinMode(canalA,INPUT);
+pinMode(canalB,INPUT);
+Serial.begin(9600);
+
+}
+
+void loop()
+{
+//Faz a leitura do canal de cada estado
+
+bool leituraCanalA = digitalRead(canalA);
+bool leituraCanalB = digitalRead(canalB);
+
+//une os valores dos canais em uma única variável
+//Rotaciona o valor de A para uma posição a esquerda e deixa o valor de B na posição a Direita
+
+int estadoAtualEncoder = ((leiutaCanalA << 1) | leituraCanalB); //mesmo que multiplicar por 10 no exemplo 34. << quanto o bit rotaciona
+//int leitura estadoAtualEnconder = leituraCanalA*2 + leituraCanalB --> fazendo com binários
+
+static int estadoAnteriorEnconder = 3; //numero que para sempre 1 e 1 binário.
+static int contador = 0 ; //variável para verificar se foi dado 4 pulsos corretos
+
+//caso houver uma movimentação no encoder, adicione ou subtraia uma unidade do acumulador de movimento
+
+if(estadoAtualEnconder != estadoAnteriorEncode)
+ acumaladorMovimento += tabelatransicao[estadoAnteriorEncoder][estadoAtualEncoder]; //acumula o movimento de 4 pulsos
+
+//se o encoder esta na posição 3 ( posição de repouso)
+
+if(estadoAtualEncoder == 3)
+{
+//se a contagem do acumulador char a 3 é porque foi dado 4 pulsos corretos
+
+if(acumaldorMovimento ==3)
+ contador ++;
+
+//se a contagem do acumlador cheaga a -3 é porque foi dado 4 pulsos corretos
+
+else if(acumladorMovimento == -3) //se foi crescida 4 pulsos na direção anti-horário
+contador --;
+
+//reinicia o acumulador para verificar o próximo movimento
+acumaladorMovimento = 0;
+}
+estadoAnteriorEncoder = estadoAtualEnconder;
+}
+
+============================================================================
+
+bounce2.h
+
+#include<Arduino.h>
+#define canalA 5 //CLK
+#deffine canalB 18 //DT
+#define
+
+const int8_t tabale_transicao[4][4] 
+
+{0,1,-1,0},
+{-1,0,0,1},
+{1,0,0,-1},
+{0,-1,1,0}
+}
+
+estadoAnterioEncontder estadoAtualenconder 
+void setup()
+{
+pinMode(canalA,INPUT);
+pinMode(canalB,INPUT);
+Serial.begin(9600);
+
+}
+
+void loop()
+{
+
+int dirEncoder = encodeerUpdate();
+dirEnconder.update();
+static bool posição Menu = 0;
+
+
+
+static bool poiscaoMenu =1;
+static int =!posicaoMenu;
+
+
+
+
+if(botaoEncodder.fell())
+ posicaoMenu = !posicaoMenu
+
+if(posicaoMenu)
+{
+
+if(dirEncoder != 0)
+ posicaoSeta+=dirEncoder;
+
+if (posicaoSeta > 3)
+ posicaoSeta = 0;
+eçse of(posicaoSeta < 0)
+   posicaoSeta = 3;
+
+}
+else //aterando a ntensidade de um led especifico
+{
+
+switch(posicaoSeta)
+{
+
+case 0:
+	
+	if(direcaoEncoder != 0)
+		intensidadeLed1+=dirEnconder*10;
+       if(intensidadeLed1 > 100)
+           intesidadeLed1 = 100;
+       else if(intensidadeLed1 < 0);
+            intesidadeLed1 =0;
+       Serial.print("Manipulando Led 1");
+ break;
+
+case 1:
+	
+	if(direcaoEncoder != 0)
+		intensidadeLed2+=dirEnconder*10;
+       if(intensidadeLed1 > 100)
+           intesidadeLed1 = 100;
+       else if(intensidadeLed1 < 0);
+            intesidadeLed1 =0;
+
+
+        Serial.print("Manipulando Led2");
+
+break;
+
+case 2:
+	Serial.print("Manipulando Led 3");
+	if(direcaoEncoder != 0)
+		intensidadeLed3+=dirEnconder*10;
+       if(intensidadeLed1 > 100)
+           intesidadeLed1 = 100;
+       else if(intensidadeLed1 < 0);
+            intesidadeLed1 =0;
+ break;
+      Serial.print("Manipulando Led2");
+
+
+case 3: 
+	
+
+	if(direcaoEncoder != 0)
+		intensidadeLed1+=dirEnconder*10;
+       if(intensidadeLed4 > 100)
+           intesidadeLed4 = 100;
+       else if(intensidadeLed4 < 0);
+            intesidadeLed4 =0;
+
+       Serial.print("Manipulando Led 4");
+break;
+
+
+
+
+}
+
+
+
+
+Serial.println(posicaoSeta);
+}
+
+
+
+
+
+
+void encoderupdate();
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+void encoderUpdate()
+{
+
+
+bool leituraCanalA = digitalRead(canalA);
+bool leituraCanalB = digitalRead(canalB);
+
+
+int estadoAtualEncoder = ((leiutaCanalA << 1) | leituraCanalB); 
+
+static int estadoAnteriorEnconder = 3; 
+static int contador = 0 ; 
+
+
+if(estadoAtualEnconder != estadoAnteriorEncode)
+ acumaladorMovimento += tabelatransicao[estadoAnteriorEncoder][estadoAtualEncoder]; 
+
+
+if(estadoAtualEncoder == 3)
+{
+
+if(acumaldorMovimento ==3)
+ contador ++;
+
+
+else if(acumladorMovimento == -3) 
+contador --;
+
+acumaladorMovimento = 0;
+}
+estadoAnteriorEncoder = estadoAtualEnconder;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
