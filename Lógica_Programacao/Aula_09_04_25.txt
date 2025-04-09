@@ -1,0 +1,263 @@
+/************************ */
+/*BIBLIOTECA              */
+/*                        */
+
+
+#include <Arduino.h>
+
+#define pinLed 2
+
+String palavra ="";
+
+void setup() {
+
+pinMode(pinLed,OUTPUT);
+Serial.begin(9600);
+Serial.println("Digite algo no monitor serial: ");
+
+ 
+}
+
+void loop() {
+ 
+
+while(Serial.available())
+{
+  char caracter = Serial.read();
+
+  Serial.printf("Voce digitou %c\n",caracter);
+
+if(caracter =='\n')
+{
+ Serial.println(palavra);
+ if(palavra.equals("liga"))
+{
+  digitalWrite(pinLed,HIGH);
+} 
+else if(palavra.equals("desliga"))
+{
+  digitalWrite(pinLed,LOW);
+
+}
+else
+{
+Serial.println("Comando nao reconhecido.");
+
+}
+ palavra = "";
+} 
+else if(caracter != '\r')
+{
+ palavra+=caracter;
+
+}
+}
+}
+/*
+
+   if(caracter == 'L')
+  {
+    digitalWrite(pinLed,HIGH);
+
+    Serial.println("Led ligado.");
+  }else if(caracter == 'D')
+    {
+      digitalWrite(pinLed,LOW);
+
+      Serial.println("Led desligado. ");
+
+    }else
+    {
+      Serial.println("Digite apenas L ou D: ");
+
+      Serial.printf("voce digitou %c\n\r",caracter);
+    }
+}
+
+}
+
+
+void setup() {
+
+
+
+ 
+}
+
+void loop() {
+ 
+
+}
+*/
+
+--------------------------
+BLUETOOTH
+------------------------
+/************************ */
+/*BIBLIOTECA              */
+/*                        */
+
+
+#include <Arduino.h>
+#include"BluetoothSerial.h"
+
+#define pinLed 2
+
+//instancias de objetos
+BluetoothSerial SerialBT;
+
+String palavra ="";
+
+void setup() {
+
+pinMode(pinLed,OUTPUT);
+Serial.begin(9600);
+SerialBT.begin("ESPFernando");
+SerialBT.println("Digite algo no monitor serial: ");
+
+ 
+}
+
+void loop() {
+ 
+ //SerialBT.println("VAI CORINTHIANS !!!!");
+
+while(SerialBT.available())
+{
+  char caracter = SerialBT.read();
+
+  SerialBT.printf("Voce digitou %c\n",caracter);
+
+if(caracter =='\n')
+{
+ SerialBT.println(palavra);
+ if(palavra.equals("liga"))
+{
+  digitalWrite(pinLed,HIGH);
+} 
+else if(palavra.equals("desliga"))
+{
+  digitalWrite(pinLed,LOW);
+
+}
+else
+{
+SerialBT.println("Comando nao reconhecido.");
+
+}
+ palavra = "";
+} 
+else if(caracter != '\r')
+{
+ palavra+=caracter;
+
+}
+}
+}
+/*
+
+   if(caracter == 'L')
+  {
+    digitalWrite(pinLed,HIGH);
+
+    Serial.println("Led ligado.");
+  }else if(caracter == 'D')
+    {
+      digitalWrite(pinLed,LOW);
+
+      Serial.println("Led desligado. ");
+
+    }else
+    {
+      Serial.println("Digite apenas L ou D: ");
+
+      Serial.printf("voce digitou %c\n\r",caracter);
+    }
+}
+
+}
+
+
+void setup() {
+
+
+
+ 
+}
+
+void loop() {
+ 
+
+}
+*/
+
+QUAL LED CONTROLAR, QUAL INTENSIDADE
+
+
+#define pinLed1 4
+#define pinLed2 6
+#define pinLed3 8
+#define pinLed4 10
+
+
+void setup()
+{
+  int pinLed[4] ;
+
+  Serial.begin(9600);
+
+  for (int i = 0; i <= 4; i++)
+    pinMode(pinLed[i], OUTPUT);
+}
+
+void loop()
+{
+  char resp ='s';
+
+  do(resp == 's' || resp == 'S') {
+
+
+
+  Serial.printf("Selecione o LED de 1 a 4: ");
+  int led = Serial.read();
+   
+   switch (led)
+   {
+   case 1:
+     Serial.println("Led 1 selecionado.");
+     digitalWrite(pinLed1,HIGH);
+    break;
+    case 2:
+     Serial.println("Led 2 selecionado.");
+     digitalWrite(pinLed2,HIGH);
+    break;
+    case 3:
+     Serial.println("Led 3 selecionado.");
+     digitalWrite(pinLed3,HIGH);
+    break;
+    case 4:
+     Serial.println("Led 4 selecionado.");
+     digitalWrite(pinLed4,HIGH);
+    break;
+   }
+   default: Serial.println("Valor invalído");
+    break;
+   Serial.println("Deseja Continuar?(s/n) ")
+   resp=digital.read();
+   while(resp == 's')
+
+   }
+
+
+/*  for (int i = 0; i <= 4; i++)
+  {
+    int led = Serial.read();
+
+    if (pinLed[i] == '\n' || pinLed[i] == '\r')
+    {
+      Serial.printf("Led selecionado: %d", pinLed[i]);
+      digitalWrite(pinLed[i], HIGH);
+    }
+  }*/
+}
+
