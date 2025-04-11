@@ -1,0 +1,143 @@
+#include <Arduino.h>
+#include "BluetoothSerial.h"
+#define pinLed 2
+
+BluetoothSerial SerialBT; // cria o objeto
+
+/*codigo para led
+
+//ESP MASTER
+void setup() {
+
+Serial.begin(9600);
+SerialBT.begin("ESPFER_M",true);
+
+if(SerialBT.connect("ESPFER_S"))
+{
+  Serial.println(" Conectado ao dispositivo com sucesso.");
+}else
+{
+
+ Serial.println("Deu ruim");
+ while (true); //trava o esp
+
+
+ }
+
+
+}
+void loop(){
+SerialBT.print("liga");
+Serial.println("Enviando Mensagem");
+
+while(Serial.available())
+
+char caractere = Serial.read();
+
+unsigned long timeout = millis() + 3000;
+
+while(millis() < timeout)
+
+{
+ if(Serial.available())
+  {
+   String resposta = Serial.readStringUntil('\r');
+   Serial.printf("Resposta: %s",resposta);
+   break;
+  
+  }
+
+
+}
+
+
+
+
+*/
+
+
+//*codigo para led
+void setup()
+{
+
+  Serial.begin(9600);
+  SerialBT.begin("ESPFER_S");
+  pinMode(pinLed,OUTPUT);
+
+  Serial.println("Esperando conexão Bluetooth....");
+}
+
+void loop()
+{
+
+  if (SerialBT.available())
+  {
+    String resposta = SerialBT.readStringUntil('\r');
+    Serial.printf("mensagem recebida:%s\n\r",resposta);
+
+    if (resposta.equals("liga"))
+    {
+      digitalWrite (pinLed, HIGH);
+    }
+
+    if (resposta.equals("desliga"))
+    {
+      digitalWrite (pinLed, LOW);
+    }
+  }
+}
+
+
+
+
+// SLAVE
+
+
+//*Codigo de conexao ping pong
+/*void setup()
+{
+
+  Serial.begin(9600);
+  SerialBT.begin("ESPFER_S");
+  pinMode(pinLed,INPUT);
+
+  Serial.println("Esperando conexão Bluetooth....");
+}
+
+void loop()
+{
+
+  if (SerialBT.available())
+  {
+    String resposta = SerialBT.readStringUntil('\r)');
+    Serial.printf("mensagem recebida:%s\n\r",resposta);
+
+    if (resposta.equals("ping"))
+    {
+      Serial.println("pong\r\n");
+    }
+  }
+}
+
+void loop()
+{
+ SerialBT.print("Ping");
+ Serial.println("Enviado a mensagem");
+
+unsigned long timeout=millis()+1000;//espera a resposta em 1 segundo senão envia novamente
+while(millis() < timeout)
+{
+
+ if(SerialBT.available()) //verifica se tem algo no buffer
+{
+
+String resposta = SerialBT.readStringUntil('\r');
+Serial.printf("Resposta %s\n\n",resposta);
+
+break;
+}
+
+}
+}
+
+*/

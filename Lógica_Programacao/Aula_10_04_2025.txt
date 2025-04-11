@@ -175,4 +175,16 @@ break;
 }
 }
 */
+
+char digitalRead(entrada[]);
+
+if (entrada == liga)
+  acende led
+if(entrada == desliga)
+
+  desliga led
+
+ 
+
+
   
