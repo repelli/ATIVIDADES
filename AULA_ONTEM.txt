@@ -1,0 +1,260 @@
+#include <Arduino.h>
+  
+ /* -------------------------------------------------------------------------- */
+ /*                              AULA SOBRE STRING'S                             */
+ /* -------------------------------------------------------------------------- */
+ 
+ // * FORMAS DE ESCREVER PALAVRAS EM C
+ 
+ char palavra[10] = "OLA MUNDO";
+ char palavra2[100] = {'O', 'L', 'A', ' ', 'M', 'U', 'N', 'D', 'O', '\0' };
+ 
+ 
+ 
+ 
+ 
+ 
+ String palavra3 = "HOJE EH QUINTA";
+ 
+ 
+ void setup() {
+   Serial.begin(9600);
+   Serial.println();
+   
+   Serial.println(palavra);
+   Serial.println(palavra2);
+  
+   strcpy(palavra, "SENAI");
+ 
+   if(strcmp(palavra, "SENAI") == 0) //SE FOR IGUAL RETORNA ZERO
+   {
+     Serial.println("SAO IGUAIS");
+   }
+ //!     ↓ 
+   if(strncmp(palavra2, "OLA", 3) == 0)
+   {
+     Serial.println("As primeiras letras da palavra é OLA");
+   }
+ 
+   if(strstr(palavra2, "MUNDO"))
+   {
+     Serial.println("Palavra MUNDO detectada");
+   }
+ 
+ //* ----------------------------------------------------------------------------
+ 
+ 
+ Serial.println( palavra3.length()  );  //retorna o numero de letras do objeto da classe String
+ Serial.println( palavra3.charAt(8) ); //retorna a oitava posicao da palavra
+ Serial.println( palavra3.substring(8,14)); //Retorna a 8° até a 14°posição
+ Serial.println( palavra3.indexOf('U')); //Retorna a posição da primeira ocorrência da letra procurada
+ Serial.println( palavra3.lastIndexOf('E')); //Retorna a posição da ultima ocorrência da letra procurada
+ if(palavra3.equals("HOJE EH QUINTA") == 1) //Retorna verdadeiro se forem iguais
+   Serial.println("São iguais");
+ 
+ if(palavra3.equalsIgnoreCase("hoje eh quinta") == 1) //Retorna verdadeiro se forem iguais ignorando letras maiúsculas/minusculas
+   Serial.println("São iguais");
+ 
+ if(palavra3.startsWith("HOJE") == 1)// Retorna verdadeiro se a palavra começar com determinado texto
+   Serial.println("Começa com HOJE");
+ 
+ if(palavra3.endsWith("INTA") == 1)// Retorna Verdadeiro se a palavra terminar com determinado texto  
+   Serial.println("Termina com INTA"); 
+ 
+   String valor = "123";  
+   int valorNumerico = valor.toInt(); //Converte o valor do texto em valor numerico de "123" para 123 (numero)
+ 
+   String valor2 = "10.5";
+   float valorNumerico2 = valor2.toFloat();
+ 
+ 
+   //* EXEMPLO: transforme o numero do texto em valor numerico tipo inteiro
+ 
+   String mensagem = "Valor = 50";
+ 
+   int tamanho = mensagem.length(); //MEDIR O TAMANHO DO TEXTO
+ 
+   String extracao = mensagem.substring(8, tamanho); //EXTRAIR O NUMERO INICIANDO EM UMA POSICAO CONHECIDA ATÉ O FIM DO TEXTO
+ 
+   int numero = extracao.toInt(); //TRANSFORME O CONTEUDO EXTRAIDO EM UM NUMERO INTEIRO
+   
+   Serial.println(numero * 2); //UTILIZE O NUMERO SEM MODERAÇÃO... HAHAHA
+ 
+ 
+   //! CONTINUANDO
+ 
+   palavra3.toLowerCase(); //Alterar todas as letras para minusculas
+   Serial.println(palavra3); 
+   palavra3.toUpperCase(); //Alterar todas para maiusculas
+   Serial.println(palavra3); 
+ 
+ 
+   String textoLed = "Led = ON";
+   Serial.println(textoLed);
+   textoLed.replace("ON" , "OFF"); //Substitui uma palavra no texto por outra
+   Serial.println(textoLed); //"Led = OFF";
+ 
+   String novaFrase = "Texto      ";  //varios espaços
+   novaFrase.trim(); //Remove os espaços do fim do texto
+ 
+   novaFrase.concat(" adicionado"); //Adiciona um texto a string
+   Serial.println(novaFrase); //Texto adicionado
+ }
+ 
+ void loop() {
+ 
+ }
+ 
+ ------------------------------------------------------------
+ EXERCICIO DE AULA
+ ------------------------------------------------------------
+ 
+ #include <Arduino.h>
+ #define pinLed 2
+ 
+ void setup()
+ {
+ 
+   Serial.begin(9600);
+   pinMode(pinLed, OUTPUT);
+   Serial.print("Comunicacao Serial Inciada\n");
+ }
+ 
+ void loop()
+ {
+ 
+   static bool estadoLed = false;
+   static bool piscaLed = false;
+ 
+   if (Serial.available()) // se houver algo na serial - padrao serial 0
+   {
+ 
+     String msg = Serial.readStringUntil('\n'); // ate encontrar uma quebra de linha
+     msg.trim();                                // tira o barra n o barra t
+ 
+     if (msg.equals("liga"))
+     {
+       piscaLed = false;
+       estadoLed = true;
+     }
+     else if (msg.equals("desliga"))
+     {
+       piscaLed = false;
+       estadoLed = false;
+     }
+     else if (msg.equals("pisca"))
+     {
+       piscaLed = true;
+     }
+   }
+   
+   unsigned long tempoAtual = millis();
+   static unsigned long tempoInicial = 0;
+   if (piscaLed)
+   {
+ 
+     if (tempoAtual - tempoInicial > 300)
+     {
+       estadoLed = !estadoLed;
+       tempoInicial = tempoAtual;
+     }
+   }
+   digitalWrite(pinLed, estadoLed);
+ }
+ 
+ 
+ Exercício 
+ -------------
+ 
+ 
+ #include <Arduino.h>
+ #define pinLed 2
+ 
+ void setup()
+ {
+   pinMode(pinLed, OUTPUT);
+   Serial.begin(9600);
+   Serial.print("Comunicação Serial Iniciada \n");
+ }
+ 
+ void loop()
+ {
+   static bool estadoLed = false;
+   static bool piscaLed = false;
+ 
+   unsigned long tempoAtual = millis();
+   static unsigned long tempoInical = 0;
+   static int tempo = 300;
+ 
+   if (Serial.available())
+   {
+     String msg = Serial.readStringUntil('\n');
+     msg.trim();
+     msg.toLowerCase();
+ 
+     if (msg.equals("liga"))
+     {
+       piscaLed = false;
+       estadoLed = true;
+     }
+ 
+     else if (msg.equals("desliga"))
+     {
+       piscaLed = false;
+       estadoLed = false;
+     }
+ 
+     else if (msg.equals("pisca"))
+     {
+       piscaLed = true;
+     }
+ 
+     else if (msg.equals("rap"))
+     {
+       tempo -= 50; //* tempo = tempo - 50;
+       if (tempo < 50)
+       {
+         tempo = 50;
+         Serial.println("velocidade máxima atingida");
+       }
+     }
+ 
+     else if (msg.equals("dev"))
+     {
+       tempo += 50; //* tempo = tempo + 50;
+       if (tempo > 1000)
+       {
+         tempo = 1000;
+         Serial.println("velocidade minima atingida");
+       }
+     }
+ 
+     if (msg.startsWith("vel = "))
+     {
+       int tamanho = msg.length();
+       String extracao = msg.substring(6, tamanho);
+       int valorVelocidade = extracao.toInt();
+ 
+       if (valorVelocidade >= 0 && valorVelocidade <= 100)
+         tempo = map(valorVelocidade, 0, 100, 1000, 50);
+ 
+       else
+         Serial.println("Valores aceitos apenas entre 0 e 100");
+     }
+ 
+     else
+     {
+       Serial.println("Comando não reconhecido!");
+     }
+   }
+ 
+   if (piscaLed)
+   {
+     if (tempoAtual - tempoInical > tempo)
+     {
+       estadoLed = !estadoLed;
+       tempoInical = tempoAtual;
+     }
+   }
+   digitalWrite(pinLed, estadoLed);
+ }
