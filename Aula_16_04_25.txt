@@ -1,0 +1,89 @@
+EQUIPE 3.
+---------
+Pensar em algo que concilia os dois sensores em uma mesma situação.
+Pesquisar os sensores como utiliza.
+Roteiro de como utilizar.
+Prepara o ppt.
+Ensinar para a sala de aula.
+projeto com os dois sensores.
+
+
+Criar o trello.
+Aula terça feira.
+
+IDÉIAS
+
+Sensor de umidade e gases  /hw028 - sensor 135
+
+excesso de umidade porque o combustível começa molhar
+
+sensor de incedio. 
+
+umidade e presença de gases tóxicos que correm os equipamentos.
+
+FRUTAS E
+sensor para carro e sensor de poluentes 
+
+---------------------------------
+estufa para amadurecimento de frutas
+mineiro
+https://app.clickup.com/90131109019/settings/team/90131109019/import?trello=true
+
+
+
+https://trello.com/b/gvIL9Huz/meu-quadro-do-trello
+
+
+Nome do dispositivo	NOTE16-S10
+Nome completo do dispositivo	NOTE16-S10.info.local
+Processador	11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz   2.30 GHz
+RAM instalada	16,0 GB (utilizável: 15,7 GB)
+ID do dispositivo	3568E2C0-7CF7-4190-BCFC-1E018A832F36
+ID do Produto	00355-60681-32294-AAOEM
+Tipo de sistema	Sistema operacional de 64 bits, processador baseado em x64
+Caneta e toque	Nenhuma entrada à caneta ou por toque disponível para este vídeo
+
+
+
+
+
+Edição	Windows 11 Pro
+Versão	24H2
+Instalado em	‎05/‎02/‎2025
+Compilação do SO	26100.3775
+Experiência	Pacote de Experiência de Recursos do Windows 1000.26100.66.0
+
+
+
+
+
+código
+
+
+#define entradaDigital 53
+#define entradaAnalogica 0
+
+bool dSensor;
+int aSensor;
+
+void setup()
+{
+Serial.begin(9600);
+pinMode(entradaDigital,input);
+}
+
+void loop()
+{
+dSensor = digitalRead(entradaDigital);
+aSensor = analogRead(entradaAnalogica);
+
+Serial.print("Leitura entrada digital: ");
+Serial.println(dSensor);
+
+Serial.print("Leitura entrada analógica");
+Serial.println(aSensor);
+Serial.println();
+
+delay(1000);
+}
+
