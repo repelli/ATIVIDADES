@@ -1,0 +1,91 @@
+
+O sensor de chuva é um dispositivo utilizado para detectar a presença de água, sendo amplamente aplicado em automação residencial, sistemas de irrigação automática, alertas de chuva para fechamento de janelas e tetos solares de veículos, além de sistemas de segurança contra inundações.
+
+Ele é composto por dois módulos: o módulo eletrônico e a placa coletora. A água, que é uma boa condutora de corrente elétrica, ao cair sobre as trilhas de cobre da placa coletora, permite a passagem de corrente. Essa corrente é então detectada pelo módulo eletrônico conectado ao sensor.
+
+O módulo eletrônico possui quatro pinos: VCC, GND, A0 (analógico) e D0 (digital). Quando a água atinge a placa coletora, a corrente gerada é lida pela entrada analógica (A0). Um comparador de tensão do tipo LM393 processa o sinal e fornece uma saída digital através do pino D0.
+
+A sensibilidade da detecção pode ser ajustada por meio de um potenciômetro integrado ao módulo. Um LED indicador se acende quando o sensor detecta a presença de água, sinalizando que a saída digital foi ativada.
+
+CÓDIGO DE EXEMPLO BÁSICO.
+
+#define leituraAnalogica A5 //Atribui o pino A5 a variável leituraAnalogica
+#define leituraDigital 8 //Atribui o pino 8 a variável leituraDigital 
+#define LedVermelho 3 //Atribui o pino 3 a variável LedVermelho
+#define LedVerde 4 //Atribui o pino 4 a variável LedVerde
+
+
+int valorAnalogico; //Declaração da variável que armazenará o valor analógico do sensor de chuva
+int valorDigital; //Declaração da variável que armazenara a saída digital do sensor de chuva
+
+
+void setup() {
+
+  Serial.begin(9600); //Incia a comunicação serial
+  pinMode(leituraAnalogica, INPUT); //Define leituraAnalogica como entrada
+  pinMode(leituraDigital, INPUT); //Define leituraDigital como entrada
+  pinMode(LedVermelho, OUTPUT); //Define LedVermelho como saída
+  pinMode(LedVerde, OUTPUT); //Define LedVerde como saída
+}
+void loop() {
+ 
+ valorAnalogico = analogRead(leituraAnalogica); //Realiza a leitura analógica do sensor e armazena em valorAnalogico
+  Serial.print("Valor analógico do sensor: "); //Imprime mensagem
+  Serial.println(valorAnalogico); //Imprime no monitor serial o valor da saída analógica do sensor de chuva
+  valorDigital = digitalRead(leituraDigital); //Realiza a leitura digital do sensor e armazena em valorDigital
+  if (valorDigital == 0) { //Se esse valor for igual a 0, será mostrado no monitor serial que a chuva foi detectada e o led verde se acende
+    Serial.println("Status: Chuva detectada");
+    digitalWrite(LedVermelho, LOW);
+    digitalWrite(LedVerde, HIGH);
+  }
+  else { // se esse valor for igual a 1, será mostrado no monitor serial que o solo está seco e o led vermelho se acende
+    Serial.println("Status: Chuva não detectada");
+    digitalWrite(LedVermelho, HIGH);
+    digitalWrite(LedVerde, LOW);
+  }
+  delay(500); //Atraso de 500ms
+}
+
+
+
+
+
+
+
+Sensor de gases- MQ2.
+
+O sensor é capaz de detectar concentrações de GLP, fumaça, álcool, propano, metano, hidrogênio e monóxido de carbono, com uma faixa de detecção que varia de 100 a 10.000 ppm. Ele é amplamente utilizado em projetos de monitoramento da qualidade do ar e em bafômetros.
+
+Embora seja capaz de identificar a presença de diversos tipos de gases, o sensor não consegue diferenciá-los individualmente. Seu funcionamento baseia-se em sensores de óxido de metal, conhecidos como quimiorresistores, cuja resistência elétrica se altera quando expostos a gases.
+
+O sensor possui saídas analógica e digital. A saída digital é usada para indicar a presença de gases, enquanto a saída analógica varia de acordo com a concentração detectada.
+
+CÓDIGO DE EXEMPLO BÁSICO.
+
+#define PinSensor A0 //Entrada analógica do Arduino conectado ao sensor
+#define PinLedVermelho 13 //Entrada digital do Arduino conectado ao LED vermelho
+#define PinLedVerde 12 //Entrada digital do Arduino conectado ao LED
+int valorLeituraSensor; //Váriavel que irá armazenar os valores de leitura do sensor
+void setup() {
+  Serial.begin(9600); //Inicialização da comunicação serial
+  pinMode(PinSensor, INPUT); // Declara o pino do sensor como pino de entrada
+  pinMode(PinLedVermelho, OUTPUT); // Declara o pino do LED vermelho como pino de saída
+  pinMode(PinLedVerde, OUTPUT); // Declara o pino do LED verde pino de saída
+}
+void loop() {
+  valorLeituraSensor = analogRead(PinSensor); //Leitura de dados do sensor
+  Serial.print("Valor detectado pelo sensor: "); //Imprime a mensagem no monitor serial
+  Serial.println(valorLeituraSensor); //Imprime valores de leitura encontrados no monitor serial
+  if (valorLeituraSensor >= 200) //Se o valor de leitura analogica for maior ou igual a 220....
+  {
+    Serial.println("Fumaça/gás detectado"); //Imprime a mensagem no monitor serial
+    digitalWrite(PinLedVerde, LOW); //Desliga o LED verde
+    digitalWrite(PinLedVermelho, HIGH); //Liga o LED vermelho
+  }
+  else {
+    Serial.println("Fumaça/gás nao detectado"); //Imprime a mensagem no monitor serial
+    digitalWrite(PinLedVerde, HIGH); //Liga o led verde
+    digitalWrite(PinLedVermelho, LOW); //Desliga o LED vermelho
+  }
+  delay(1000); //Repete a leitura a cada 1 segundo
+}
