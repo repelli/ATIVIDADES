@@ -1,0 +1,4 @@
+npm -version
+node -version.
+code runner
+ctr+alt+n --> executa o código.
