@@ -1,0 +1,88 @@
+@ --> at --> no,na,em --> localização.
+
+usuário no servidor.
+
+comando Linux.
+
+ls
+aptitude --> ferramenta de  gerenciamento de pacotes
+aptitude moo 
+         !__argumento.
+
+ls -r --> imprime a lista reversa.
+
+pwd --> onde estamos.
+cd --> troca diretórios.
+
+caminho absoluto /home/sysadmin
+caminho relativo a partir da onde estou cd Documents
+
+cd ~ --> retorna para o home do usuário.
+
+su --> modo root
+sudo -->executa um programa como root
+sudo -u para mudar para outro usuário.
+
+chmod --> muda a permissão
+
+./ --> executa o programa devendo ser executado a partir do diretório atual.
+
+
+chown --> altera o proprietário do arquivo.
+
+cat --> exibe os arquivos.
+
+head --> mostra as linhas superiores do arquivo  /   padrão 10 linhas
+tail --> mostra as linhas finais do aquivo       /
+n especifica a quantidade de linhas que quer exibir
+
+
+
+cp --> copia os arquivos.
+
+cp origem destino
+
+dd --> copia arquivo ou partições inteiras no nível de bits, clonar, unidades usb e ceromns, fazer backup e retaura o MBR
+
+dd operando
+
+dd if=/dev/zero  le o arquivo
+
+dd if=/dev/zero of=/tmp/swapex onde gravar o o arquivo
+
+dd if=/dev/zero of/tmp/swapex bs=1M --> um tamanho de bloco a ser gravado.
+
+count=50 --> leitura de 50 blocos.
+
+
+dd if=/dev/das of=/dev/sdb --> clona o disco rígido
+
+mv origem destino  --> move o arquivo
+
+dentro do mesmo diretório renomeia o arquivo.
+
+rm nome do arquivo --> exclui o arquivo
+
+rm -R ou r remove um diretório
+
+grep --> filtra textos
+
+grep sysadmin passwd
+
+
+egrep --> para expressões regulares básicas e extendidas.
+
++  {} ! ()
+
+
+
+
+
+
+
+https://awsacademy.instructure.com/courses/120785/modules/items/11433537
+
+
+parei no 14.2
+
+https://portal.netdevgroup.com/learn/6046bef5-a6bf-47a1-bb33-3e35e31137f8/iMsZucpW6h/?xid=eyJpZCI6Imx0aTFwMy1sYXVuY2gtNWM3YjJlMTItZGVjMC00YjNjLWI0MTYtNTRkYmNiOTQ2ZGM5IiwiY29udGV4dF9pZCI6IjYwNDZiZWY1LWE2YmYtNDdhMS1iYjMzLTNlMzVlMzExMzdmOCIsInJvbGUiOiJTIiwidXNlcl9pZCI6ImIyMzcyMWQwODUyMDRkNzk4NzJhNTZkODE2MzNjZTQ3In0:1uA5EX:iidQOSYM_ksyZHOX80p68TE7og6_egF7mD9QjCAc3Ms
