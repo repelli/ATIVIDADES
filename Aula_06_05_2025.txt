@@ -1,0 +1,37 @@
+Inscrição do IA 900
+
+
+espera de turma de sábado.
+
+
+rmdir -i pasta_vazia pergunta se vc quer de fato apagar a pasta
+
+criação de usuário
+-----------------
+sudo adduser nome_do_usuário
+
+criação de grupo
+
+sudo addgroup administradores
+
+adicionar usuário a grupo
+
+sudo usermod -aG administrador fernando
+
+para ver a qual grupo o usuário pertence
+
+groups fernado
+
+para mudar o grupo
+
+sudo chgrp administrador minha pasta/
+           -R os arquivos também são alterados
+
+
+
+
+permissão das pastas
+
+rwx  777
+
+usuário grupo outros
