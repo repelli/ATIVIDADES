@@ -1,0 +1,45 @@
+0-  mova a pasta TechSolution de onde ela esta para /opt
+O caminho ficara : /opt/TechSolutions.
+
+mv /home/ubuntu/TechSolutions /home/opt
+
+
+1- Criar grupos de trabalho
+Voce deve criar grupos correspondentes a cada departamento: Administração, Projetos e TI.
+
+sudo addgroup Administração 
+sudo addgroup Projetos 
+sudo addgroup TI 
+
+2- Criar os usuários:
+Os usuários que farão para  desta organização serão:
+Crie usuário para cada membro do grupo da sua mesa, atribua a eles setores Adminsitação , Porojetos e TI.
+
+adduser julia && adduser Thiery && adduser Isaque && adduser Giuliano && adduser Igor
+
+
+4- Adcionar o usuário aos grupos corretos:
+Garanta que cada usuário tenha acesso somente ao seu setor.
+
+sudo usermod -aG administracao Fernando
+sudo usermod -aG projeto julia
+sudo usermod -aG ti Giuliano 
+sudo usermod -aG administracao igor
+sudo usermod -aG projeto thiery
+suod usermod -aG ti isaque
+
+
+5-Configurar os donos da pastas:
+Altere a propriedade das pastas para que o grupo correspondente seja o dono delas.
+sudo chgrp -R administração
+sudo chgrp -R projetos
+sudo chgrp -R ti
+
+
+6- Ajustar premissões das pastas:
+Defina as permissões para que apensas o dono e o grupo tenham acesso total as pastas, bloquenao o acesso para o outro usuário.
+sudo chmod 770 Administração
+sudo chmod 770 TI
+sudo chmod 770 Projetos
+
+

@@ -1,0 +1,48 @@
+GIT FLOW.
+---------
+
+Para juntar conteúdo.
+
+git checkout main --> vai para a branche.
+git merge login --> traz o conteúdo mais a branch do conteúdo que eu quero trazer.
+
+
+----------------------------------------------
+git init
+git add .
+git commit -m "Meus arquivos"
+
+git branch teste cria a branch
+
+git merge
+git checkout login  --> muda a branch
+==========================================
+git remote add origin https:/GitHub.com/repelli/24714193805/GitHubBraches.git
+git push origin main
+git checkout login
+
+=============================================
+git init
+git add .
+git commit -m "meus arquivos"
+git branch  teste
+git remote add origin https://github.com/repelli/GitHubBranches.git
+git push -u origin main
+
+==================================================
+git branch -a  --> lista todas as branches
+git  fetch     --> atualiza as o computador com as branches que tem no GitHub
+git pull origin login(só o que eu quero trazer)      -->traz do git para o computador atualiza pelo git
+git branch - D nome da branche  --> deleta a branch
+
+
+git clone {https://github.com/IsaqueSilvaDev/Git-Flow.git}
+
+
+
+
+
+
+
+
+

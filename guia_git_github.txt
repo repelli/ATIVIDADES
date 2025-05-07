@@ -1,0 +1,57 @@
+
+Guia Prático para usar o GitHub
+
+1. Crie um repositório no GitHub
+- Acesse: https://github.com
+- Clique em "New repository".
+- Preencha:
+  - Nome do repositório: exemplo, meu-primeiro-repo
+  - Escolha Público ou Privado.
+  - Marque a opção "Add a README file" (opcional).
+- Clique em Create repository.
+
+2. Clone o repositório para seu computador
+No Terminal ou Git Bash:
+git clone https://github.com/seu-usuario/meu-primeiro-repo.git
+
+(Troque "seu-usuario" pelo seu nome de usuário no GitHub.)
+
+3. Entre na pasta do projeto
+cd meu-primeiro-repo
+
+4. Crie um novo arquivo
+echo "Olá, GitHub!" > ola.txt
+
+5. Adicione e faça um commit
+git add .
+git commit -m "Adiciona arquivo ola.txt com saudação"
+
+6. Envie para o GitHub (Push)
+git push origin main
+
+(Se a branch principal for 'master', troque 'main' por 'master'.)
+
+7. Verifique no site
+- Vá até o seu repositório no GitHub para ver o arquivo ola.txt.
+
+Resumo dos comandos usados:
+git clone URL-do-repo
+cd nome-da-pasta
+echo "Texto" > arquivo.txt
+git add .
+git commit -m "Mensagem"
+git push origin main
+
+Tarefa bônus: criar uma branch e fazer Pull Request
+1. Criar branch:
+git checkout -b nova-feature
+
+2. Criar novo arquivo:
+echo "Nova funcionalidade" > nova.txt
+
+3. Commitar e enviar:
+git add .
+git commit -m "Adiciona nova funcionalidade"
+git push origin nova-feature
+
+4. Criar Pull Request no GitHub.
