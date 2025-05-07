@@ -1,7 +1,7 @@
 0-  mova a pasta TechSolution de onde ela esta para /opt
 O caminho ficara : /opt/TechSolutions.
 
-mv /home/ubuntu/TechSolutions /home/opt
+mv /home/ubuntu/TechSolutions /opt
 
 
 1- Criar grupos de trabalho
@@ -43,3 +43,18 @@ sudo chmod 770 TI
 sudo chmod 770 Projetos
 
 
+sudo useradd -m -G administração fernando  --> cria o usuário no grupo já
+sudo passwd Fernando  --> cria a senha para o usuário
+
+
+
+
+
+
+libera o firewall
+
+sudo ufw allowed 'Apache'
+sudo ufw enable 'Apache'
+
+
+https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#Instances:
