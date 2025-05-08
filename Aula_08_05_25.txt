@@ -1,0 +1,67 @@
+sudo ufw status
+
+sudo ufw enable
+
+sudo ufw app list
+
+sudo ufw allow 'Apache Full'
+
+sudo ufw status
+
+cd /
+cd var
+cd www
+cd html
+sudo nano index.html
+
+--------------------
+
+var/www
+mkdir site1
+
+echo "<h1> SITE 1</H1>" | sudo tee /var/www/site1/index.html
+
+
+cria um virtual host
+
+cd /etc/apache2/sites-available/
+ls -l
+-------------------
+nano 00-default.conf
+
+virtualhots -->porta 80
+
+
+/var/www/html/site1
+
+----------------------
+cp 00-default.conf site1.conf
+
+nano site1.conf
+
+<virtualHosts *:80>
+
+ServerAdmin webmaster@localhost
+ServerName site1.local
+DocumentRoot /var/www/site1
+
+
+ErrorLog ${APACHE_LOG_DIR} /error.log
+CustmLog ${APACHE_LOG_DIR}/acess.log combined
+
+</VirtualHost>
+
+sudo nano /etc/hosts
+adicionar
+127.0.0.1 site1.local
+
+
+
+sudo a2ensite site1.conf
+
+
+sudo service apache2 restart
+
+sudo curl https://localhost
+sudo curl http://site1.local
+
