@@ -1,0 +1,155 @@
+sudo ufw status
+
+sudo ufw enable
+
+sudo ufw app list
+
+sudo ufw allow 'Apache Full'
+
+sudo ufw allow 22
+
+sudo ufw allow 8081
+
+sudo ufw allow 8082
+
+sudo ufw allow 8083
+
+sudo ufw status
+
+
+
+cd /var/www/
+ls -l
+mkdir site1 site2 site3
+ls -l
+
+cd site1
+sudo VIM index.html
+<h1> SITE 1 </h1>
+
+(WSQ)
+:wq
+
+cd ..
+
+cd site2
+sudo vim index.html
+<h1> SITE 2 </h1>
+
+(ESC)
+:wq
+
+cd ..
+
+cd site3
+sudo vim index.html
+<h1> SITE 3 </h1>
+(ESC)
+:wq
+
+                 OU
+                ----
+
+echo "<h1> SITE 1</H1>" | sudo tee /var/www/site1/index.html
+echo "<h1> SITE 2</H1>" | sudo tee /var/www/site2/index.html
+echo "<h1> SITE 2</H1>" | sudo tee /var/www/site3/index.html
+
+
+
+cd /etc/apache2/sites-available/
+
+ls -l
+-------------------
+sudo cat 00-default.conf
+
+sudo cp 000-default.conf site1.conf
+sudo cp 000-default.conf site2.conf
+sudo cp 000-default.conf site3.conf
+
+sudo vim site1.conf
+
+<virtualHosts *:8081>
+
+ServerAdmin webmaster@localhostsud
+ServerName site1.local
+DocumentRoot /var/www/site1
+
+
+ErrorLog ${APACHE_LOG_DIR} /error.log
+CustmLog ${APACHE_LOG_sudDIR}/acess.log combined
+
+</VirtualHost>
+
+(ESQ)
+:wq
+
+
+sudo vim site2.conf
+
+<virtualHosts *:8082>
+
+ServerAdmin webmaster@localhostsud
+ServerName site2.local
+DocumentRoot /var/www/site2
+
+
+ErrorLog ${APACHE_LOG_DIR} /error.log
+CustmLog ${APACHE_LOG_sudDIR}/acess.log combined
+
+</VirtualHost>
+
+(ESC)
+:wq
+
+sudo vim site3.conf
+
+<virtualHosts *:8083>
+
+ServerAdmin webmaster@localhostsud
+ServerName site3.local
+DocumentRoot /var/www/site3
+
+
+ErrorLog ${APACHE_LOG_DIR} /error.log
+CustmLog ${APACHE_LOG_sudDIR}/acess.log combined
+
+</VirtualHost>
+
+(ESQ)
+:wq
+
+sudo vim /etc/hosts
+
+adicionar
+
+127.0.0.1 site1.local
+127.0.0.1 site2.local
+127.0.0.1 site2.local
+
+(ESC)
+:wq
+
+vim /etc/apache2/ports.conf
+Adcionar
+Listen 8081
+Listen 8082
+Listem 8083
+
+(ESQ)
+:wq
+
+
+
+sudo a2ensite site1.conf
+sudo a2ensite site2.conf
+sudo a2ensite site3.conf
+
+
+sudo service apache2 restart
+
+sudo curl http://site1.local
+sudo curl http://site2.local
+sudo curl http://site3.local
+
+
+
