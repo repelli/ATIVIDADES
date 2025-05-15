@@ -1,0 +1,46 @@
+sudo apt update
+sudo apt upgrade
+sudo apt-get install apache2 -y
+sudo apt-get install nodejs -y
+node -v
+
+gerenciado de pacotes noodejs -->  npm --> atualiza as bibliotecas.
+
+sudo apt-get install npm -y 
+npm -v 
+apt-get install git -y
+git -v
+cd /var/www
+ls -l
+sudo git clone https://github.com/simondiep/node-multiplayer-snake.git
+chow -R $USER:$USER node-multiplayer-snak/
+l -l
+cd node-multplayer-snake
+ls -l
+cat package.json
+npm install
+node app.js
+npm install -g pm2 --> instala o gerenciador do node
+pm2 list
+pm2 start app.js --name jogo_da_cobrinha
+pm2 startup
+
+sudo env PATH=$PATH: /us/bin /usr/local/lib/node_modules/pmw/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu 
+pm2 save
+
+sudo a2emmod proxy
+sudo a2enmod proxy_http
+
+service apache2 restart
+
+sudo nano /etc/apache2/sites-available/000-defautl.conf
+
+
+ProxyPreserveHost On
+ProxyPass / http: //localhosts:3000/
+ProxyPassReverse / http://localhost:300 /
+
+sudo service apache2 restart
+
+
+
