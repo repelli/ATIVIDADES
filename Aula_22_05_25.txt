@@ -1,0 +1,191 @@
+Aula 22/05/2025
+
+//Bibliotecas.
+---------------
+
+include <Arduino.h>
+#include <PubSubClient.h>
+#include <WiFi.h>
+#include <ArduinoJson.h>
+#include "internet.h"
+
+
+//DEFINIÇÃO DOS BOTÕES.
+-----------------------
+#define pinLed 2
+#define pinButton 5
+
+
+//CRIAÇÃO DOS OBJETOS.
+------------------
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+//DEFINIÇÃO DAS CONSTANTES PARA CONEXÃO COM O ESP.
+--------------------------------------------------
+
+const char *mqtt_server = "broker.hivemq.com";
+const int mqtt_port = 1883;
+const char *mqtt_id = "espFernando";
+const char *mqtt_topic_sub = "senai134/mesa03/esp_inscrito";
+const char *mqtt_topic_pub = "senai134/mesa03/esp_publicando";
+
+//DECLARAÇÃO DE VARIÁVEIS PARA O BOTÃO.
+-------------------------------------
+bool estadoLed = false;
+bool modoPisca = false;
+unsigned long tempoEspera = 500;
+
+//PROTÓTIPOS DAS FUNÇÕES.
+---------------------------
+
+void callBack(char *, byte *, unsigned int);
+void mqttConnect(void);
+void controleDoLed(void);
+void checkWiFi(void);
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+  conectaWiFi();//CHAMADA DA FUNÇÃO.
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(callBack);
+  pinMode(pinLed, OUTPUT);//DEFINIÇÃO DOS BOTÕES.
+  pinMode(pinButton, INPUT_PULLUP);
+}
+
+
+
+void loop()
+{
+//DEFINIÇÃO DO ESTADO DAS VARIÁVEIS PARA O BOTÃO.
+-----------------------------------------------
+bool estadoAtualBotao = digitalRead(pinButton);
+static bool estadoAnteriorBotao = 1;
+static bool ultimaAcao;
+
+static unsigned long tempoAnteriorDebounce = 0;
+unsigned long tempoAtual = millis();
+unsigned long tempoDebounce = 50;
+
+//tratamento do botão
+
+ if (estadoAtualBotao != estadoAnteriorBotao)
+  {
+
+    tempoAnteriorDebounce = tempoAtual; // marca a hora da alteração
+  }
+  // verifica estado esta estável a bastante tempo
+
+  if ((tempoAtual - tempoAnteriorDebounce) > tempoDebounce)
+  {
+    if (estadoAtualBotao != ultimaAcao) // houve alteração do proposital do estado do botão
+    {
+      ultimaAcao = estadoAtualBotao;
+      if (!estadoAtualBotao) // botão apertado
+      {
+
+      }}}
+
+  checkWiFi(); //CHAMADA DA FUNÇÃO.
+
+  if (!client.connected())
+    mqttConnect();
+
+  client.loop();
+
+  static unsigned long tempoAnterior = 0;
+ 
+ 
+  JsonDocument doc;
+  doc["botao"] = digitalRead(0);
+  doc["msg"] = "OLA MUNDO";
+  String mensagem ;
+  serializeJson(doc,mensagem);
+
+
+    client.publish(mqtt_topic_pub, "Mensagem");
+   
+}
+
+//FUNÇÃO CALLBACK
+-----------------
+void callBack(char *topic, byte *payload, unsigned int Lenght)
+{
+  Serial.printf("Mensagem recebida em %s:", topic);
+
+  String mensagem = "";
+  for (unsigned int i = 0; i < Lenght; i++)
+  {
+    char c = (char)payload[i];
+    mensagem += c;
+  }
+  Serial.println(mensagem);
+  if(mensagem == "liga")
+    digitalWrite(pinLed,HIGH);
+  else 
+   digitalWrite(pinLed,LOW);
+
+  JsonDocument doc;
+  deserializeJson(doc, mensagem);
+
+  if (!doc[estadoLed].isNull())
+  {
+    estadoLed = doc["estadoLed"];
+  }
+
+  if (!doc[modoPisca].isNull())
+  {
+    modoPisca = doc["modoPisca"];
+  }
+
+  if (!doc[tempoEspera].isNull())
+  {
+    tempoEspera = doc["tempoEspera"];
+  }
+}
+
+//FUNÇÃO MQTTCONNECT.
+---------------------
+
+void mqttConnect()
+{
+  while (!client.connected())
+  {
+    Serial.println("Conectando ao MQTT...");
+
+    if (client.connect(mqtt_id))
+    {
+      Serial.println("Conectado com sucesso");
+      client.subscribe(mqtt_topic_sub);
+    }
+    else
+    {
+      Serial.println("Falha, rc=");
+      Serial.println(client.state());
+      Serial.println("Tentando novamente em 5 segundos");
+      delay(5000);
+    }
+  }
+}
+//FUNÇÃO CONTROLA LED.
+----------------------
+
+void controleDoLed()
+{
+  static unsigned long ultimaMudanca = 0;
+  unsigned long agora = millis();
+
+  if (modoPisca == true)
+
+  {
+    if (agora - ultimaMudanca > tempoEspera)
+    {
+      !estadoLed;
+      ultimaMudanca = agora;
+    }
+  }
+}
