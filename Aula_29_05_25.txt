@@ -1,0 +1,246 @@
+CORREÇÃO DO EXERCÍCIO.
+======================
+
+
+#include <Arduino.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+#include <ezTime.h>
+#include <LiquidCrystal_I2C.h>
+#include <WiFi.h>
+#include "internet.h"
+
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+Timezone tempoLocal;
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+const char *mqtt_server = "broker.hivemq.com";
+const int mqtt_port = 1883;
+const char *mqtt_id = "esp32-senai134-fernando";
+const char *mqtt_topic_sub = "senai134/mesa03/esp_inscrito";
+const char *mqtt_topic_pub = "senai134/mesa03/esp_publicando";
+
+void callback(char *, byte *, unsigned int);
+void mqttConnect(void);
+void tratamentoMsg(String);
+void mostraDisplay(float temp, float umid, time_t timestamp);
+void templateDisplay(void);
+
+void setup()
+{
+
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+  templateDisplay();
+  conectaWiFi();
+
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(callback);
+
+  tempoLocal.setLocation("America/Sao_Paulo");
+}
+
+void loop()
+{
+
+ checkWiFi();
+  if (!client.connected())
+    mqttConnect();
+  client.loop();
+}
+
+void callback(char *topic, byte *payload, unsigned int length)
+{
+  Serial.printf("mensagem recebida em %s: ", topic);
+
+  String mensagem = "";
+  for (unsigned int i = 0; i < length; i++)
+  {
+    char c = (char)payload[i];
+    mensagem += c;
+  }
+  Serial.println(mensagem);
+  tratamentoMsg(mensagem);
+}
+
+void mqttConnect()
+{
+  while (!client.connected())
+  {
+    Serial.println("Conectando ao MQTT...");
+
+    if (client.connect(mqtt_id))
+    {
+      Serial.println("Conectado com sucesso");
+      client.subscribe(mqtt_topic_sub);
+    }
+
+    else
+    {
+      Serial.print("falha, rc=");
+      Serial.println(client.state());
+      Serial.println("tentando novamente em 5 segundos");
+      delay(5000);
+    }
+  }
+}
+
+void tratamentoMsg(String msg)
+{
+  String mensagem = msg;
+  JsonDocument doc;
+
+  DeserializationError erro = deserializeJson(doc, mensagem); ;
+ 
+  if (erro)
+  {
+    Serial.println("Mensagem Recebida nao esta no formato Json");
+    return;
+  }
+  else
+  {
+
+    float temperatura, umidade;
+
+    time_t timestamp;
+
+    if (!doc["temp"].isNull())
+    {
+
+      temperatura = doc["temp"];
+
+      if (!doc["umid"].isNull())
+        umidade = doc["umid"];
+    }
+
+    if (!doc["timestamp"].isNull())
+    {
+      timestamp = doc["timestamp"];
+    }
+
+    mostraDisplay(temperatura, umidade, timestamp);
+  }
+}
+
+void mostraDisplay(float temp, float umid, time_t time)
+{
+  float temperatura = temp;
+  float umidade = umid;
+  time_t timestamp = time;
+
+  lcd.setCursor(6, 1);
+  temperatura = constrain(temperatura, 0, 99); // biblioteca arduino que se for maior que 0 retorna zero se maior que 99 retorna 99
+  lcd.print(temperatura, 1);                   // 1 quantidade de decimais
+
+  lcd.setCursor(6, 2);
+  umidade = constrain(umidade, 0, 100);
+  lcd.print(umidade,1);
+
+  lcd.setCursor(0, 3);
+  tempoLocal.setTime(timestamp);
+  lcd.print( tempoLocal.dateTime("d/m/Y H:i"));
+}
+
+// coisas que não serão alteradas.
+
+void templateDisplay()
+{
+
+  lcd.home();
+  lcd.print("Ambiente Monitorado.");
+
+  lcd.setCursor(0, 1);
+  lcd.print("Temp:     C"); //(6,1)
+
+  lcd.setCursor(0, 2);
+  lcd.print("Umidade:    % "); //(6,1)
+}
+
+
+INTERNET.H
+===========
+#ifndef INTERNET_H
+#define INTERNET_H
+
+void conectaWiFi(void);
+void checkWiFi(void);
+
+#endif
+
+
+SENHAS.H
+=========
+const char *SSID = "SALA 09";
+const char *SENHA = "info@134";
+
+
+INTERNET.CPP
+=============
+
+
+#include <Arduino.h>
+#include<WiFi.h>
+#include"internet.h"
+#include"senhas.h"
+
+
+const unsigned long tempoEsperaConexao = 20000;
+const unsigned long tempoEsperaReconexao = 10000;
+
+void conectaWiFi()
+{
+Serial.printf("Conectando ao WiFi: %s",SSID);
+WiFi.begin(SSID,SENHA);
+
+unsigned long tempoInicialWiFi = millis();
+
+while(WiFi.status() != WL_CONNECTED && millis() - tempoInicialWiFi < tempoEsperaConexao)
+{
+Serial.print(".");
+delay(500);
+}
+
+if(WiFi.status() == WL_CONNECTED)
+{
+Serial.println("WiFi conectado com sucesso!");
+Serial.println("Endereco IP: ");
+Serial.println(WiFi.localIP());
+}
+else
+{
+    Serial.println("Falha ao conectar no WiFi. Verifique o nome da rede e a senha.");
+}
+}
+
+void checkWiFi()
+{
+unsigned long tempoAtual = millis();
+static unsigned long tempoUltimaConexao = 0;
+
+if(tempoAtual - tempoUltimaConexao > tempoEsperaReconexao)
+{
+if(WiFi.status() != WL_CONNECTED)
+{
+    Serial.println("Conexao Perdida! Tentando reconectar ...");
+    conectaWiFi();
+}
+
+tempoUltimaConexao = tempoAtual;
+}
+}
+
+
+GRUPO DO PROJETO
+
+MAYARA
+GUILHERME ARAUJO 
+LUIS
+RAFAELLA
+GUILHERME VIEIRA
+
+https://dontpad.com/l4senai
+https://trello.com/invite/b/68385f650863a73ef08824e7/ATTI2af0eb2d8abb24c49cecbc647b2b7fd53C4A3826/projeto-mesa-7
+
