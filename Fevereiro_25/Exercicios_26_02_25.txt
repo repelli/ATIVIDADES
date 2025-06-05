@@ -1,0 +1,135 @@
+EXERCICIO 1.
+------------
+/* Nome: Sensor de temperatura
+Author: Fernando Gomes Repelli
+Data: 26/02/2025.
+Descrição: O programa acende um alerta quando a temperatura for superior a 30 graus. */
+
+#include<Arduino.h>
+
+float temperatura = 32;
+
+void setup()
+{
+pinMode(13,OUTPUT);
+Serial.begin(9600);
+
+if(temperatura > 30)
+{
+  digitalWrite(13,HIGH);
+  delay(3000);
+  Serial.println("Atenção!!!");
+}
+}
+
+void loop()
+{
+}
+
+EXERCICIO 2.
+------------
+/*Nome:Bateria
+Autor: Fernando Gomes Repelli
+Data: 26/02/2025.
+Descrição: O programa acende um alerta quando a bateria estiver entre 20% e 80%
+*/
+float bateria = 22;
+
+void setup()
+{
+pinMode(12,OUTPUT);
+Serial.begin(9600);
+
+if(bateria >=20 || bateria <=80)
+{
+ digitalWrite(12,HIGH);
+ delay(1000);
+ Serial.println("Bateria em bom estado");
+
+}
+}
+
+void loop()
+{
+
+}
+
+Exercício 3.
+------------
+/*
+Nome: Faixa de valores
+Autor: Fernando Gomes Repelli
+Data: 26/02/2026
+Descrição: O programa acende um alerta quando o valor estiver fora da faixa e converte os valores inseridos para a faixa */
+
+
+#include<Arduino.h>
+
+float valor = 512.0;
+float novoValor = 0.0;
+
+
+void setup()
+{
+Serial.begin(9600);
+pinMode(7,OUTPUT);
+
+if(valor > 0 && valor < 1023)
+{
+novoValor 20 + (valor/17.5);
+Serial.print("Valor convertido para: ");
+Serial.println(novoValor);
+}else if(valor <= 0)
+       {
+         novoValor = 20;
+         digitalWrite(7,HIGH);
+         delay(1000);
+         Serial.println("Valor abaixo da faixa convertido para: ");
+         Serial.println(novoValor);
+}else
+	novoValor = 80;
+	digitalWrite(7,HIGH);
+        Serial.print("Valor acima da faixa convertido para: ");
+       Serial.println(novoValor);
+
+}
+}
+
+void loop()
+{
+
+}
+
+EXERCICIO 4.
+------------
+/* Nome: Verifica Par.
+Autor: Fernando Gomes Repelli.
+Data: 26/02/2025.
+Descrição: O programa acende um Led se o número for par.
+*/
+
+
+int numero = 2.0;
+int resto = 0.0;
+
+void setup()
+{
+pinMode(8,OUTPUT);
+Serial.begin(9600);
+resto = numero % 2;
+
+if (resto ==0)
+{
+digitalWrite(8,HIGH);
+delay(1000);
+Serial.println("O numero e par!!!");
+}
+}
+
+void loop()
+{
+
+}
+
+
+

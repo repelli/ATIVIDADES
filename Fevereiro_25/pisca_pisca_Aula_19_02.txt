@@ -1,0 +1,19 @@
+/*Autor: Fernando Gomes Repelli
+Nome do programa: pisca-pisca
+Descrição: este é o primeiro código em Arduino para piscar o led 13.
+Data: 19/02/2025.
+
+void setup()
+{
+Pin mode(13,OUTPUT);
+}
+
+void loop()
+{
+digitalWrite(13,HIGH);
+delay(1000);
+
+
+digitalWrite(13,LOW);
+delay(1000);
+}

@@ -1,0 +1,114 @@
+/* Nome: Fernando Gomes Repelli.
+Descrição: Estruturas de comparação e decisão.
+Data: 25/02/2025 */
+
+/*
+*****OPERADORES DE COMPARAÇÃO *****
+== -> para comparação é usado dois iguais
+!= -> inversão de igual, verifica se dois valores são diferentes.
+> -> comparador de maior.
+< -> comparador de menor.
+>= -> comparador de maior ou igual.
+<= -> comparador de menor ou igual.
+
+**** OPERADORES DE DECISÃO *****
+if(condição)
+{
+
+Se a condição for verdadeira executa a ação.
+
+}
+
+if(condição)
+{
+
+Se a condição for verdadeira executa a ação.
+
+}
+else
+{
+
+Se a condição for falsa executa a ação.
+
+}
+
+*/
+
+
+#include<Arduino.h>
+
+int temperatura = 3;
+
+void setup()
+{
+
+Serial.begin(9600);
+
+if(temperatura >= 30)
+{
+Serial.println(" Dois sois para cada um.");
+
+}else if( temperatura > 24 && temperatura < 30)
+    {
+       Serial.println("Partiu praia!");
+     }
+       else if(temperatura > 18 & temperatura <=24)
+               Serial.println("Ta gostosinho");
+                else if(temperatura > 6 & temperatura <=18)
+                        {
+                          Serial.println("Pega a coberta");
+                         }else
+                             {
+                                 Serial.println("Frio pra caramba");
+
+}
+
+
+
+void loop()
+{
+
+}
+
+
+
+//EXERCICIO CALCULO DE IMC.
+/*
+Nome: Calculo de IMC
+Autor: Fernando Gomes Repelli
+Descrição: Calcula se o usuário esta ou não com sobrepeso
+Data: 25/02/2025.
+
+
+double peso = 20.0;
+double altura = 1.87;
+double imc = 0.0;
+
+void setup()
+{
+   Serial.begin(9600);
+
+imc = peso/pow(altura,2);
+
+
+if(imc < 18.5)
+ Serial.println("Abaixo do peso");
+   else if(imc >=18.5 & imc <=24.9)
+             Serial.println("Peso normal";
+          else if(imc >=25 && imc<=29.9)
+               Serial.println("Sobrepeso");
+                  else if(imc >=30)
+                          Serial.println("Obeso");
+
+
+}
+
+void loop()
+{
+
+}
+
+
+
+
+

@@ -1,0 +1,141 @@
+/*Nome do programa: Matematica.
+Autor: Fernando Gomes Repelli.
+Data: 24/02/2025
+Descrição: Este código ira demonstrar as operações matemáticas básica.
+*/
+
+//*****DECLARAÇÃO DE VÁRIAVEIS GLOBAIS*****
+
+#include<Arduino.h>
+
+int numeroA = 10;
+int numeroB = 5;
+int resultado = 0;
+float resultadoReal = 0;
+
+
+void setup()
+{
+Serial.begin(9600);
+Serial.print(sizeof(int));
+
+//***ADIÇÃO.
+resultado = numeroA + numeroB;
+Serial.print("A SOMA do numero A com o numero B e: ");
+Serial.println(resultado);
+
+
+//***SUBTRAÇÃO.
+resultado = numeroA - numeroB;
+Serial.print("A SUBTRACAO do numero A com o numero B e: ");
+Serial.println(resultado);
+
+
+//***MULTIPLICAÇÃO.
+resultado = numeroA * numeroB;
+Serial.print("A MULTIPLICACAO do numero A com o numero B e: ");
+Serial.println(resultado);
+
+//***DIVISAO INTEIRA.
+
+resultado = numeroA /numeroB;
+Serial.print("A DIVISAO do numero A pelo numero B e: ");
+Serial.println(resultado);
+
+//***RESTO DA DIVISAO
+resultado = numeroA % numeroB;
+Serial.print("O RESTO da divisão do numero A pelo numero B e: ");
+Serial.println(resultado);
+
+//***DIVISAO REAL
+
+resultado = (float)numeroA / (float)numeroB;
+Serial.print("A divisao REAL do numero A pelo numero B e: ");
+Serial.println(resultado,1);
+
+//***POTENCIAÇÃO.
+resultado = pow(numeroA,numeroB);
+Serial.print("A POTENCIA do numero a elevado ao numero B e: ");
+Serial.println(resultado);
+
+//***POTENCIAÇÃO - QUADRADO DE UM NÚMERO.
+resultado = sq(numeroA);
+Serial.print("A POTENCIA do numero A elevado ao quadrado e: ");
+Serial.println(resultado);
+
+//***RAIZ QUADRADA
+resultado = sqrt((float)numeroA);
+Serial.print("A RAIZ QUADRADA do numero A e: ");
+Serial.println(resultado);
+
+//***MÓDULO - NUMERO ABSOLUTO
+resultado = abs(numeroA*-1);
+Serial.print("O MODULO do numero A multiplicado por -1 e: ");
+Serial.println(resultado);
+
+//***RESTRIÇÃO.
+resultado = constrain(numeroA,-3,5);
+Serial.print("A RESTRICAO do numero A e: ");
+Serial.println(resultado);
+
+//***MAPEAMENTO
+resultado = map(numeroA,0,20,0,10);
+Serial.print("O MAPEAMENTO do numero A e: ");
+Serial.println(resultado);
+
+Serial.println();
+
+
+//***OPERADORES DE ATRIBUIÇÃO.
+
+//*numeroA = numeroA +5
+Serial.print("Numero A + 5: ");
+Serial.println(numeroA+=5);
+
+//*numeroA = numeroA -5
+Serial.print("O numero A - 5: ");
+Serial.println(numeroA -=5);
+
+//*numeroA = numeroA * 5;
+Serial.print("O numero A * 5: ");
+Serial.println(numeroA *=5);
+
+//*numeroA = numeroA/5
+Serial.print("Numero A / 5: ");
+Serial.println(numeroA /=5);
+
+
+//***INCREMENTO
+
+numeroA = numeroA +1 ;
+Serial.print("Numero A POS incremento: ");
+Serial.println(numeroA++);//pos incremento
+Serial.println(numeroA);
+Serial.println("Numero A PRE incremento: ");
+Serial.println(++numeroA);
+Serial.println(numeroA);
+
+
+//DECREMENTO
+
+numeroA = numeroA -1;
+Serial.print("Numero A POS decremento: ");
+Serial.println(numeroA--);
+Serial.println(numeroA);
+Serial.print("Numero A PRE decremento: ");
+Serial.println(--numeroA);
+Serial.println(numeroA);
+
+
+
+}
+
+void loop()
+{
+
+
+}
+
+
+
+
