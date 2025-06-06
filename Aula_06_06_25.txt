@@ -1,0 +1,63 @@
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
+#include <DHT_U.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// configuração dos pinos do sensor
+#define DHTPIN  4         // Pino de dados conectado ao HW-028
+#define DHTTYPE DHT11     // HW-028 normalmente usa DHT11
+
+DHT_Unified dht(DHTPIN, DHTTYPE);
+sensors_event_t umidade, temperatura;
+
+// criação do objeto 
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+void mostra_temperatura_umidade();
+
+void setup() {
+  Serial.begin(9600); //inicial a leitura serial
+
+  // Inicializa o sensor
+  dht.begin();
+  sensor_t sensor;
+  dht.temperature().getSensor(&sensor);
+  dht.humidity().getSensor(&sensor);
+
+  // Inicializa o display
+  lcd.init();
+  lcd.home();
+  lcd.clear();
+  lcd.printf("Leitura umidade e temperatura");
+  lcd.display();
+  delay(1000);
+}
+
+void loop() {
+ //chamada da função
+ mostra_temperatura_umidade();
+  delay(2000);  // Aguarda 2 segundos entre leituras
+}
+
+//função para detecção de temperatura e umidade
+void mostra_temperatura_umidade() {
+  dht.temperature().getEvent(&temperatura); //le a temperatura e armazena na variavel temperatura do tipo sensor
+  dht.humidity().getEvent(&umidade);
+
+  lcd.clear(); //limpa o lcd
+
+//verifica se há alguma leitura de umidade e temperatura, se não houver retorna 0 senão retorna 1
+  if (isnan(umidade.relative_humidity) || isnan(temperatura.temperature)) {
+    lcd.print("Erro na leitura!");
+  } else {
+    lcd.setCursor(0,1);//posiciona o cursor
+    lcd.println("Sensor de Temperatura e Umidade.");
+    lcd.setCursor(1,1);
+    lcd.println("Temp: " + String(temperatura.temperature, 1) + " °C"); //imprime a temperatura
+    lcd.setCursor(2,1);
+    lcd.println("Umid: " + String(umidade.relative_humidity, 1) + " %"); //imprime o percentual de umidade
+  }
+
+  lcd.display();
+}
